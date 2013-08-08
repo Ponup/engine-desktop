@@ -1,0 +1,129 @@
+#include "Text.h"
+
+#include <SDL.h>
+
+#include "StringUtil.h"
+
+Text::Text() {
+	alpha = SDL_ALPHA_OPAQUE;
+}
+
+Text::Text(const char *text) {
+	this->text = strdup(text);
+	alpha = SDL_ALPHA_OPAQUE;
+}
+
+Text::Text(const char *text, Font *font) {
+	this->text = strdup(text);
+	this->font = font;
+	alpha = SDL_ALPHA_OPAQUE;
+}
+
+Text::~Text() {
+	if (text) {
+		free(text);
+		text = NULL;
+	}
+}
+
+void Text::setText(const char *text) {
+	this->text = strdup(text);
+}
+
+char *Text::getText() const {
+	return strdup(text);
+}
+
+void Text::setFont(Font *font) {
+	this->font = font;
+}
+
+Font *Text::getFont() const {
+	return font;
+}
+
+Dimension Text::getDimension() const {
+	int width, height;
+	if (TTF_SizeText(font->toSDL(), text, &width, &height)) {
+		fprintf(stderr, "%s\n", TTF_GetError());
+	}
+
+	return Dimension(width, height);
+}
+
+void Text::setAlpha(int alpha) {
+	this->alpha = alpha;
+}
+
+void Text::draw(const Point &point, Surface *surface) {
+	SDL_Surface *fontSurface= NULL;
+	Color color = font->getColor();
+	switch (font->getStyle()) {
+	case BLENDED:
+		fontSurface
+				= TTF_RenderUTF8_Blended(font->toSDL(), text, color.toSDL());
+		break;
+	case SOLID:
+		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text, color.toSDL());
+		break;
+	case SHADED:
+	default: {
+		SDL_Color bgColor = { 0, 0, 0 };
+		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text, color.toSDL(),
+				bgColor);
+	} break;
+	}
+
+	// @TODO
+	if(fontSurface) {
+		SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
+		SDL_Rect dstRect = { point.getX(), point.getY(), 0, 0 };
+		SDL_BlitSurface(fontSurface, NULL, surface->toSDL(), &dstRect);
+		SDL_FreeSurface(fontSurface);
+	}
+}
+
+void Text::drawLines(const Point &point, const Dimension &dimension,
+		Surface *surface) {
+	Point np = point;
+	vector<string> tokens;
+	StringUtil::tokenize(text, tokens, " ");
+	const int lineSkip = TTF_FontLineSkip(font->toSDL());
+
+	string testLine;
+	string finalLine;
+	Text * newText= new Text();
+	newText->setFont(font);
+	int width, height;
+	//	while(!tokens.empty()) {
+	bool left = true;
+	for (unsigned int i = 0; i < tokens.size(); i++) {
+		testLine += tokens.at(i) + " ";
+		if (TTF_SizeText(font->toSDL(), testLine.c_str(), &width, &height)) {
+			fprintf(stderr, "%s\n", TTF_GetError());
+		}
+		if ((unsigned)width < dimension.getWidth()) {
+			finalLine = testLine;
+			left = true;
+		} else { // every time we reach the final, move the point
+			left = false;
+			newText->setText(finalLine.c_str());
+			newText->draw(np, surface);
+			testLine.clear();
+			testLine = tokens.at(i) + " ";
+
+			np.setX(np.getX());
+			np.setY(np.getY()+lineSkip);
+		}
+	}
+	if (left) {
+		newText->setText(finalLine.c_str());
+		newText->draw(np, surface);
+	}
+}
+
+void Text::drawString(const char *txt, const Point &point, Font *font,
+		Surface *surface) {
+	Text text(txt, font);
+	text.draw(point, surface);
+}
