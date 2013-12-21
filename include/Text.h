@@ -1,6 +1,9 @@
 #ifndef TEXT_H
 #define TEXT_H
 
+#include <string>
+using std::string;
+
 #include "Surface.h"
 #include "Font.h"
 #include "Dimension.h"
@@ -9,19 +12,19 @@
 class Text {
 
 private:
-	char *text;
+	string text;
 	Font *font;
 	
 	int alpha;
 
 public:
 	Text();
-	Text(const char *text);
-	Text(const char *text, Font *font);
+	Text(string text);
+	Text(string text, Font *font);
 	~Text();
 
-	void setText(const char *text);
-	char *getText() const;
+	void setText(string text);
+	string getText() const;
 	void setFont(Font *font);
 	Font *getFont() const;
 	Dimension getDimension() const;
@@ -32,7 +35,7 @@ public:
 	void drawLines(const Point &point, const Dimension &dimension,
 			Surface *surface);
 
-	static void drawString(const char *txt, const Point &point, Font *font,
+	static void drawString(string text, const Point &point, Font *font,
 			Surface *surface);
 };
 

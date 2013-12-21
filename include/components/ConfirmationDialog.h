@@ -1,6 +1,9 @@
 #ifndef CONFIRMATION_DIALOG_H
 #define CONFIRMATION_DIALOG_H
 
+#include <string>
+using std::string;
+
 #include "components/AbstractDialog.h"
 #include "components/Button.h"
 #include "SensitiveAreas.h"
@@ -31,7 +34,7 @@ private:
 	void update();
 
 public:
-	ConfirmationDialog(Surface *screen, const char *message);
+	ConfirmationDialog(Surface *screen, string message);
 	~ConfirmationDialog();
 
 	int showGetSelected();

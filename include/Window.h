@@ -1,6 +1,9 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <string>
+using std::string;
+
 #include "Surface.h"
 
 /**
@@ -11,7 +14,7 @@
 class Window : public Surface {
 
 private:
-	const char *title;
+	string title;
 	unsigned int width;
 	unsigned int height;
 	bool fullScreen;
@@ -22,8 +25,8 @@ public:
 	const static int FLAGS_WINDOW;
 	const static int FLAGS_FULLSCREEN;
 
-	Window(const char *title, unsigned int width, unsigned int height);
-	Window(const char *title, unsigned int width, unsigned int height,
+	Window(string title, unsigned int width, unsigned int height);
+	Window(string title, unsigned int width, unsigned int height,
 			const char *iconPath, bool fullScreen);
 
 	/**

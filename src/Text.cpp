@@ -8,30 +8,26 @@ Text::Text() {
 	alpha = SDL_ALPHA_OPAQUE;
 }
 
-Text::Text(const char *text) {
-	this->text = strdup(text);
+Text::Text(string text) {
+	this->text = text;
 	alpha = SDL_ALPHA_OPAQUE;
 }
 
-Text::Text(const char *text, Font *font) {
-	this->text = strdup(text);
+Text::Text(string text, Font *font) {
+	this->text = text;
 	this->font = font;
 	alpha = SDL_ALPHA_OPAQUE;
 }
 
 Text::~Text() {
-	if (text) {
-		free(text);
-		text = NULL;
-	}
 }
 
-void Text::setText(const char *text) {
-	this->text = strdup(text);
+void Text::setText(string text) {
+	this->text = text;
 }
 
-char *Text::getText() const {
-	return strdup(text);
+string Text::getText() const {
+	return text;
 }
 
 void Text::setFont(Font *font) {
@@ -44,7 +40,7 @@ Font *Text::getFont() const {
 
 Dimension Text::getDimension() const {
 	int width, height;
-	if (TTF_SizeText(font->toSDL(), text, &width, &height)) {
+	if (TTF_SizeText(font->toSDL(), text.c_str(), &width, &height)) {
 		fprintf(stderr, "%s\n", TTF_GetError());
 	}
 
@@ -61,15 +57,15 @@ void Text::draw(const Point &point, Surface *surface) {
 	switch (font->getStyle()) {
 	case BLENDED:
 		fontSurface
-				= TTF_RenderUTF8_Blended(font->toSDL(), text, color.toSDL());
+				= TTF_RenderUTF8_Blended(font->toSDL(), text.c_str(), color.toSDL());
 		break;
 	case SOLID:
-		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text, color.toSDL());
+		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text.c_str(), color.toSDL());
 		break;
 	case SHADED:
 	default: {
 		SDL_Color bgColor = { 0, 0, 0 };
-		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text, color.toSDL(),
+		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text.c_str(), color.toSDL(),
 				bgColor);
 	} break;
 	}
@@ -122,8 +118,8 @@ void Text::drawLines(const Point &point, const Dimension &dimension,
 	}
 }
 
-void Text::drawString(const char *txt, const Point &point, Font *font,
+void Text::drawString(string text, const Point &point, Font *font,
 		Surface *surface) {
-	Text text(txt, font);
-	text.draw(point, surface);
+	Text t(text, font);
+	t.draw(point, surface);
 }

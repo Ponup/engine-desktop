@@ -29,7 +29,7 @@ private:
 	void update();
 
 public:
-	InformationDialog(Surface *screen, const char *message);
+	InformationDialog(Surface *screen, string message);
 	~InformationDialog();
 
 	void show();

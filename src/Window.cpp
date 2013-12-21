@@ -7,14 +7,14 @@
 const int Window::FLAGS_WINDOW= SDL_DOUBLEBUF | SDL_HWSURFACE;
 const int Window::FLAGS_FULLSCREEN= SDL_DOUBLEBUF | SDL_HWSURFACE | SDL_FULLSCREEN;
 
-Window::Window(const char *title, unsigned int width, unsigned int height) {
+Window::Window(string title, unsigned int width, unsigned int height) {
 	*this = Window(title, width, height, NULL, false);
 }
 
-Window::Window(const char *title_, unsigned int width_, unsigned int height_,
+Window::Window(string title_, unsigned int width_, unsigned int height_,
 		const char * iconPath, bool fullScreen_) :
 	title(title_), width(width_), height(height_), fullScreen(fullScreen_) {
-	SDL_WM_SetCaption(title_, title_);
+	SDL_WM_SetCaption(title_.c_str(), title_.c_str());
 
 	if (iconPath != NULL) {
 		SDL_Surface *icon = IMG_Load(iconPath);
