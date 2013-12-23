@@ -59,21 +59,19 @@ void Database::update(const char *sql, ...) {
 }
 
 ResultSet &Database::execute(const char *sql, ...) throw(runtime_error) {
-	char query[200];
-	memset(query, '\0', 200);
+	char query[512];
+	memset(query, '\0', 512);
 
 	va_list params;
 	va_start(params, sql);
 	vsprintf(query, sql, params);
 	va_end(params);
 
-	char **result;
+	char **result = NULL;
 	int rowsNum, colsNum;
 	char *errorMessage = (char *)malloc(sizeof(char) * 100);
 
-	int rc = sqlite3_get_table(db, query, &result, &rowsNum, &colsNum,
-			&errorMessage);
-
+	int rc = sqlite3_get_table(db, query, &result, &rowsNum, &colsNum, &errorMessage);
 	if (rc != SQLITE_OK) {
 		throw runtime_error(errorMessage);
 	}
