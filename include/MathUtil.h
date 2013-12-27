@@ -11,14 +11,12 @@ using std::vector;
 class MathUtil {
 	
 public:
-	static const float PI;
-
-	static inline float degree2radian(float degree) {
-		return (degree * PI/180);
+	static inline float degree2radian( float degree ) {
+		return ( degree * M_PI / 180 );
 	}
 
-	static inline float radian2degree(float radian) {
-		return (radian * 180/PI);
+	static inline float radian2degree( float radian ) {
+		return ( radian * ( 180 / M_PI ) );
 	}
 
 	static float calculateDistance(const Point &a, const Point &b);

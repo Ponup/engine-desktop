@@ -41,3 +41,4 @@ void MediaSound::setVolume(int volume) {
 Mix_Chunk *MediaSound::toSDL() {
 	return sound;
 }
+

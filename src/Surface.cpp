@@ -71,8 +71,12 @@ void Surface::setTransparentColor(const Color &color) {
 }
 
 void Surface::drawSurface(Surface *image, const Point &point) {
-	SDL_Surface *imageSurf = image->toSDL();
-	if(imageSurf == NULL) return;
+	drawSurface( image->toSDL(), point );
+}
+
+void Surface::drawSurface(SDL_Surface* imageSurf, const Point &point) {
+	if( NULL == imageSurf )
+		return;
 
 	SDL_Rect rectDst = { point.x, point.y, 0, 0 };
 	SDL_Rect rectSrc;
@@ -94,7 +98,7 @@ void Surface::updateArea(const Area &area) {
 }
 
 void Surface::flip() {
-	SDL_Flip(surface);
+	SDL_Flip( surface );
 }
 
 Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
@@ -104,9 +108,7 @@ Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
 			dimension.h };
 	SDL_BlitSurface(surface, &rect, area, NULL);
 
-	Surface * surface= new Surface(area);
-
-	return surface;
+	return new Surface(area);
 }
 
 Surface * Surface::getArea(const Area & area) {
