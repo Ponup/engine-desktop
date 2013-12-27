@@ -3,15 +3,15 @@
 const float MathUtil::PI = 3.14159265;
 
 float MathUtil::calculateDistance(const Point &a, const Point &b) {
-	float adj = (b.getX() - a.getX());
-	float opp = (b.getY() - a.getY());
+	float adj = (b.x - a.x);
+	float opp = (b.y - a.y);
 
 	return sqrtf(adj * adj + opp * opp);
 }
 
 double MathUtil::calculateDegrees(const Point &a, const Point &b) {
-	float adj = (b.getX() - a.getX());
-	float opp = (b.getY() - a.getY());	
+	float adj = (b.x - a.x);
+	float opp = (b.y - a.y);	
 
 	return radian2degree(atan2(opp, adj));
 }

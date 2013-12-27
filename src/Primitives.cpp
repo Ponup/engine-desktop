@@ -3,8 +3,8 @@
 #include "MathUtil.h"
 
 void Primitives::drawPoint(SDL_Surface * screen, const Point & point, const Color & color_) {
-    Uint32 color = SDL_MapRGB(screen->format, color_.getRed(), color_.getGreen(), color_.getBlue());
-    Uint16 * bufp = (Uint16 *)screen->pixels + point.getY() *screen->pitch/2 + point.getX();
+    Uint32 color = SDL_MapRGB(screen->format, color_.r, color_.g, color_.b);
+    Uint16 * bufp = (Uint16 *)screen->pixels + point.y *screen->pitch/2 + point.x;
     *bufp = color;
 }
 
@@ -19,7 +19,7 @@ void Primitives::drawPixel(Surface * surface, const Point & point, const Color &
     if(SDL_MUSTLOCK(screen)) {
         SDL_UnlockSurface(screen);
     }
-    SDL_UpdateRect(screen, point.getX(), point.getY(), 1, 1);
+    SDL_UpdateRect(screen, point.x, point.y, 1, 1);
 }	
 
 void Primitives::drawLine(Surface * surface, const Point & from, const Point & to, const Color & color) {
@@ -37,8 +37,8 @@ void Primitives::drawLine(Surface * surface, const Point & from, const Point & t
 		int x = int(radius * cos(radians));
 		int y = int(radius * sin(radians));
 		Point point;
-		point.setX(from.getX()+x);
-		point.setY(from.getY()+y);
+		point.x = from.x + x;
+		point.y = from.y + y;
 		drawPoint(screen, point, color);
 	}
 	

@@ -13,8 +13,8 @@ InformationDialog::InformationDialog(Surface *screen_, string message) : screen(
 				
 	Text messageText(message, font);
 
-	unsigned int windowWidth = 20 + messageText.getDimension().getWidth() + 20;
-	unsigned int windowHeight = 20 + messageText.getDimension().getHeight() + 20 + 50 + 20;
+	unsigned int windowWidth = 20 + messageText.getDimension().w + 20;
+	unsigned int windowHeight = 20 + messageText.getDimension().h + 20 + 50 + 20;
 	
 	windowDimension = Dimension(windowWidth, windowHeight);
 	
@@ -34,8 +34,8 @@ InformationDialog::InformationDialog(Surface *screen_, string message) : screen(
 		
 	Point buttonPos;
 	
-	int winCenter = (windowWidth >> 1) - (button->getDimension().getWidth() >> 1);
-	buttonPos = Point(winCenter, windowDimension.getHeight() - 50);
+	int winCenter = (windowWidth >> 1) - (button->getDimension().w >> 1);
+	buttonPos = Point(winCenter, windowDimension.h - 50);
 	button->setPosition(buttonPos);
 	
 	windowPosition = SurfaceUtil::drawCentered(window, screen);

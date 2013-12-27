@@ -6,7 +6,6 @@
 class System {
 
 	public:
-		static void delay(int ms);
 		static void waitUser();
 		static void showCursor(bool visible);
 		static void setMousePosition(int x, int y);

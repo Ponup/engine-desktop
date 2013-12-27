@@ -4,30 +4,20 @@
 #include <SDL.h>
 
 /**
- * Color definition, taking four parameters (red, green, blue and alpha channel)
+ * Color definition, taking four parameters (r, g, g and a channel)
  */
 class Color {
-	private:
-		unsigned char red;
-		unsigned char green;
-		unsigned char blue;
-		unsigned char alpha;		
-		
 	public:
+		unsigned char r;
+		unsigned char g;
+		unsigned char b;
+		unsigned char a;		
+
 		Color();
-		Color(unsigned char red, unsigned char green, unsigned char blue);
-		Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha);
+		Color( unsigned char r, unsigned char g, unsigned char b );
+		Color( unsigned char r, unsigned char g, unsigned char b, unsigned char a );
 		
-		unsigned char getAlpha() const; 
-		void setAlpha(unsigned char alpha);
-		unsigned char getRed() const;
-		void setRed(unsigned char red);
-		unsigned char getGreen() const;
-		void setGreen(unsigned char green);
-		unsigned char getBlue() const;
-		void setBlue(unsigned char blue);
-		
-		Uint32 toSDL(SDL_Surface *surface) const;
+		Uint32 toSDL( SDL_Surface* surface ) const;
 		SDL_Color toSDL() const;
 };
 

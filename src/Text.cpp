@@ -51,7 +51,7 @@ void Text::setAlpha(int alpha) {
 	this->alpha = alpha;
 }
 
-void Text::draw(const Point &point, Surface *surface) {
+void Text::draw( const Point &point, Surface *surface ) {
 	SDL_Surface *fontSurface= NULL;
 	Color color = font->getColor();
 	switch (font->getStyle()) {
@@ -73,7 +73,7 @@ void Text::draw(const Point &point, Surface *surface) {
 	// @TODO
 	if(fontSurface) {
 		SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
-		SDL_Rect dstRect = { point.getX(), point.getY(), 0, 0 };
+		SDL_Rect dstRect = { point.x, point.y, 0, 0 };
 		SDL_BlitSurface(fontSurface, NULL, surface->toSDL(), &dstRect);
 		SDL_FreeSurface(fontSurface);
 	}
@@ -98,7 +98,7 @@ void Text::drawLines(const Point &point, const Dimension &dimension,
 		if (TTF_SizeText(font->toSDL(), testLine.c_str(), &width, &height)) {
 			fprintf(stderr, "%s\n", TTF_GetError());
 		}
-		if ((unsigned)width < dimension.getWidth()) {
+		if ((unsigned)width < dimension.w) {
 			finalLine = testLine;
 			left = true;
 		} else { // every time we reach the final, move the point
@@ -108,8 +108,8 @@ void Text::drawLines(const Point &point, const Dimension &dimension,
 			testLine.clear();
 			testLine = tokens.at(i) + " ";
 
-			np.setX(np.getX());
-			np.setY(np.getY()+lineSkip);
+			np.x = np.x;
+			np.y = np.y + lineSkip;
 		}
 	}
 	if (left) {

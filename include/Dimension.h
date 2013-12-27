@@ -5,22 +5,15 @@
  * Contains information about the dimension of an element.
  */
 class Dimension {
-	private:
-		unsigned short width;
-		unsigned short height;
-	
 	public:
-		Dimension() : width(0), height(0) { }
-		Dimension(unsigned short width_, unsigned short height_) : width(width_), height(height_) { }
-		Dimension(const Dimension &dimension);
+		unsigned short w;
+		unsigned short h;
+
+		Dimension() : w( 0 ), h( 0 ) {}
+		Dimension( unsigned short w_, unsigned short h_ ) : w( w_ ), h( h_ ) {}
+		Dimension( const Dimension& dimension );
 		
-		void setWidth(unsigned short width);
-		unsigned short getWidth() const;
-
-		void setHeight(unsigned short height);
-		unsigned short getHeight() const;
-
-		const char *toString() const;
+		const char* toString() const;
 };
 
 #endif

@@ -13,8 +13,8 @@ Surface::Surface(SDL_Surface *surface) {
 
 Surface::Surface(Surface *surface, const Dimension &dimension) {
 	SDL_Surface *x = surface->toSDL();
-	this->surface = SDL_CreateRGBSurface((x)->flags | SDL_SRCALPHA, dimension.getWidth(),
-			dimension.getHeight(), (x)->format->BitsPerPixel, (x)->format->Rmask, (x)->format->Gmask, (x)->format->Bmask, (x)->format->Amask);
+	this->surface = SDL_CreateRGBSurface((x)->flags | SDL_SRCALPHA, dimension.w,
+			dimension.h, (x)->format->BitsPerPixel, (x)->format->Rmask, (x)->format->Gmask, (x)->format->Bmask, (x)->format->Amask);
 }
 
 Surface::Surface(const char *path, bool hasAlphaChannel) {
@@ -61,14 +61,12 @@ void Surface::clean() {
 }
 
 void Surface::clean(const Color &color) {
-	Uint32 a = SDL_MapRGB(surface->format, color.getRed(), color.getGreen(),
-			color.getBlue() );
+	Uint32 a = SDL_MapRGB( surface->format, color.r, color.g, color.b );
 	SDL_FillRect(surface, NULL, a);
 }
 
 void Surface::setTransparentColor(const Color &color) {
-	Uint32 key = SDL_MapRGB(surface->format, color.getRed(), color.getGreen(),
-			color.getBlue());
+	Uint32 key = SDL_MapRGB( surface->format, color.r, color.g, color.b );
 	SDL_SetColorKey(surface, SDL_SRCCOLORKEY | SDL_RLEACCEL, key);
 }
 
@@ -76,7 +74,7 @@ void Surface::drawSurface(Surface *image, const Point &point) {
 	SDL_Surface *imageSurf = image->toSDL();
 	if(imageSurf == NULL) return;
 
-	SDL_Rect rectDst = { point.getX(), point.getY(), 0, 0 };
+	SDL_Rect rectDst = { point.x, point.y, 0, 0 };
 	SDL_Rect rectSrc;
 
 	rectSrc.x = rectSrc.y = 0;
@@ -87,8 +85,8 @@ void Surface::drawSurface(Surface *image, const Point &point) {
 }
 
 void Surface::updateArea(const Point &point, const Dimension &dimension) {
-	SDL_UpdateRect(surface, point.getX(), point.getY(), dimension.getWidth(),
-			dimension.getHeight());
+	SDL_UpdateRect(surface, point.x, point.y, dimension.w,
+			dimension.h);
 }
 
 void Surface::updateArea(const Area &area) {
@@ -100,10 +98,10 @@ void Surface::flip() {
 }
 
 Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
-	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags | SDL_SRCALPHA, (dimension.getWidth()),
-			(dimension.getHeight()), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
-	SDL_Rect rect = { point.getX(), point.getY(), dimension.getWidth(),
-			dimension.getHeight() };
+	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags | SDL_SRCALPHA, (dimension.w),
+			(dimension.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
+	SDL_Rect rect = { point.x, point.y, dimension.w,
+			dimension.h };
 	SDL_BlitSurface(surface, &rect, area, NULL);
 
 	Surface * surface= new Surface(area);

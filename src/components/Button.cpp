@@ -6,7 +6,7 @@ Button::Button(const char *label_, Font *font_, const ButtonSkin *skinNormal_,
 	state = STATE_NORMAL;
 
 	text = new Text(label_, font_);
-	dimension = Dimension(skinNormal.leftSurf->getDimension().getWidth() + text->getDimension().getWidth() + skinNormal.rightSurf->getDimension().getWidth(), 50);
+	dimension = Dimension(skinNormal.leftSurf->getDimension().w + text->getDimension().w + skinNormal.rightSurf->getDimension().w, 50);
 }
 
 Button::~Button() {
@@ -53,7 +53,7 @@ void Button::draw(Surface *surface) {
 		surface->drawSurface(skin->leftSurf, getPosition());
 
 	if(skin->centerSurf) {
-		int textWidth = text->getDimension().getWidth();
+		int textWidth = text->getDimension().w;
 		for (int x = 0; x < textWidth; x++) {
 			surface->drawSurface(skin->centerSurf, getPosition()
 					+ Point( 27 + x, 0));
@@ -63,5 +63,5 @@ void Button::draw(Surface *surface) {
 		text->draw(getPosition() + Point(27, 12), surface);
 
 	if(skin->rightSurf)
-		surface->drawSurface(skin->rightSurf, getPosition() + Point( text->getDimension().getWidth() + 27, 0));
+		surface->drawSurface(skin->rightSurf, getPosition() + Point( text->getDimension().w + 27, 0));
 }

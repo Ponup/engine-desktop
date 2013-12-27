@@ -4,32 +4,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-Dimension::Dimension(const Dimension &dimension) {
-	width = dimension.getWidth();
-	height = dimension.getHeight();
+Dimension::Dimension( const Dimension& dimension ) {
+	w = dimension.w;
+	h = dimension.h;
 }
 
-void Dimension::setWidth(unsigned short width) {
-	this->width = width;
-}
+const char* Dimension::toString() const {
+	char* text = (char*)calloc( 50, sizeof( char ) );
+	if( !text ) return NULL;
 
-unsigned short Dimension::getWidth() const {
-	return width;
-}
-
-void Dimension::setHeight(unsigned short height) {
-	this->height = height;
-}
-
-unsigned short Dimension::getHeight() const {
-	return height;
-}
-
-const char *Dimension::toString() const {
-	char *text = (char *)calloc(50, sizeof(char));
-	if(!text) return NULL;
-
-	sprintf(text, "Dimension [ width: %d, height: %d ]", width, height);
+	sprintf( text, "Dimension [ w: %d, h: %d ]", w, h );
 	
 	return text;
 }

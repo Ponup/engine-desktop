@@ -26,8 +26,8 @@ bool SurfaceUtil::fadeIn(Surface * surface, Surface * parent, const Point & to) 
 	SDL_Surface *backup = parent->getArea(to, surface->getDimension())->toSDL();
 
 	SDL_Rect destination;
-	destination.x = to.getX();
-	destination.y = to.getY();
+	destination.x = to.x;
+	destination.y = to.y;
 	destination.w = image->w;
 	destination.h = image->h;
 			
@@ -63,8 +63,8 @@ bool SurfaceUtil::fadeOut(Surface * surface, Surface * parent, const Point & to)
 	SDL_Surface * backup = parent->getArea(to, surface->getDimension())->toSDL();
 
 	SDL_Rect destination;
-	destination.x = to.getX();
-	destination.y = to.getY();
+	destination.x = to.x;
+	destination.y = to.y;
 	destination.w = image->w;
 	destination.h = image->h;
 	

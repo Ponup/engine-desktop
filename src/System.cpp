@@ -1,9 +1,5 @@
 #include "System.h"
 
-void System::delay(int ms) {
-	SDL_Delay(ms);
-}
-
 void System::waitUser() {
 	SDL_Event event;
 	bool quit = false;

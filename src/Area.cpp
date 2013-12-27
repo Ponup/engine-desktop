@@ -18,19 +18,19 @@ Dimension Area::getDimension() const {
 
 bool Area::contains(short x, short y) const {
 	return (
-		x >= point.getX() &&
-		x <= point.getX() + dimension.getWidth() &&
-		y >= point.getY() &&
-		y <= point.getY() + dimension.getHeight()
+		x >= point.x &&
+		x <= point.x + dimension.w &&
+		y >= point.y &&
+		y <= point.y + dimension.h
 	);
 }
 
 SDL_Rect Area::toSDL() const {
 	SDL_Rect rect;
-	rect.x = point.getX();
-	rect.y = point.getY();
-	rect.w = dimension.getWidth();
-	rect.h = dimension.getHeight();
+	rect.x = point.x;
+	rect.y = point.y;
+	rect.w = dimension.w;
+	rect.h = dimension.h;
 	
 	return rect;
 }
@@ -40,10 +40,10 @@ const char *Area::toString() const {
 	if(!text) return NULL;
 
 	sprintf(text, "Area [ x: %d, y: %d, width: %d, height: %d ]",
-		point.getX(),
-		point.getY(),
-		dimension.getWidth(),
-		dimension.getHeight()
+		point.x,
+		point.y,
+		dimension.w,
+		dimension.h
 	);
 	
 	return text;

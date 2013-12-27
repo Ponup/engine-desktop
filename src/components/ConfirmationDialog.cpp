@@ -16,8 +16,8 @@ ConfirmationDialog::ConfirmationDialog(Surface *screen_, string message) : scree
 				
 	Text messageText(message, &font);
 
-	unsigned int windowWidth = 20 + messageText.getDimension().getWidth() + 20;
-	unsigned int windowHeight = 20 + messageText.getDimension().getHeight() + 20 + 50 + 20;
+	unsigned int windowWidth = 20 + messageText.getDimension().w + 20;
+	unsigned int windowHeight = 20 + messageText.getDimension().h + 20 + 50 + 20;
 	
 	windowDimension = Dimension(windowWidth, windowHeight);
 	
@@ -38,11 +38,11 @@ ConfirmationDialog::ConfirmationDialog(Surface *screen_, string message) : scree
 		
 	Point buttonPos[2];
 	
-	int winCenter = (windowWidth >> 2) - (buttons[0]->getDimension().getWidth() >> 1);
-	buttonPos[0] = Point(winCenter, windowDimension.getHeight() - 50);
+	int winCenter = (windowWidth >> 2) - (buttons[0]->getDimension().w >> 1);
+	buttonPos[0] = Point(winCenter, windowDimension.h - 50);
 	
-	winCenter = ((windowWidth >> 2) * 3) - (buttons[1]->getDimension().getWidth() >> 1);
-	buttonPos[1] = Point(winCenter, windowDimension.getHeight() - 50);
+	winCenter = ((windowWidth >> 2) * 3) - (buttons[1]->getDimension().w >> 1);
+	buttonPos[1] = Point(winCenter, windowDimension.h - 50);
 
 	buttons[0]->setPosition(buttonPos[0]);
 	buttons[1]->setPosition(buttonPos[1]);
