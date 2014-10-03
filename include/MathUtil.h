@@ -3,6 +3,9 @@
 
 #include <math.h>
 
+#include <utility>
+using std::pair;
+
 #include <vector>
 using std::vector;
 
@@ -20,8 +23,11 @@ public:
 	}
 
 	static float calculateDistance(const Point &a, const Point &b);
+	static double calculateDistance( pair<double, double> a, pair<double, double> b );
 	static double calculateDegrees(const Point &a, const Point &b);
-	static vector<Point> calculatePath(const Point &a, const Point &b);
+	static double calculateDegrees( pair<double, double> a, pair<double, double> b );
+	static vector<Point> calculatePath( const Point& a, const Point& b );
+	static vector<Point> calculatePath( pair<double, double> a, pair<double, double> b );
 };
 
 #endif
