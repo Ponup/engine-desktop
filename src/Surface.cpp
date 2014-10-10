@@ -1,6 +1,7 @@
 #include "Surface.h"
 
 #include <SDL_image.h>
+#include <SDL_rotozoom.h>
 
 #include "StringUtil.h"
 
@@ -113,6 +114,14 @@ Surface * Surface::getArea(const Area & area) {
 
 void Surface::setOpacity(Uint8 opacity) {
 	SDL_SetAlpha(surface, SDL_RLEACCEL | SDL_SRCALPHA, opacity);
+}
+
+void Surface::transform( double angle, double zoom, int smooth ) {
+	SDL_Surface* rotatedSurface = rotozoomSurface( surface, angle, zoom, smooth );
+	if( nullptr != rotatedSurface ) {
+		SDL_FreeSurface( surface );
+		surface = rotatedSurface;
+	}
 }
 
 SDL_Surface *Surface::toSDL() {

@@ -41,6 +41,8 @@ public:
 	Surface *getArea(const Point &point, const Dimension &dimension);
 	Surface *getArea(const Area &area);
 
+	void transform( double angle, double zoom = 1, int smooth = 1 );
+
 	void setOpacity(Uint8 opacity);
 	SDL_Surface *toSDL();
 };
