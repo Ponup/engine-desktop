@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 /**
- * Color definition, taking four parameters (r, g, g and a channel)
+ * Color definition, taking four parameters (r, g, b and a channel)
  */
 class Color {
 	public:

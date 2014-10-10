@@ -19,3 +19,4 @@ SDL_Color Color::toSDL() const {
 	SDL_Color color = { r, g, b, a };
 	return color;
 }
+

@@ -33,7 +33,6 @@ public:
 	void clean(const Color &color);
 	void setTransparentColor(const Color &color);
 	void drawSurface( Surface* image, const Point &point );
-	void drawSurface( SDL_Surface* image, const Point &point );
 
 	void updateArea(const Point &point, const Dimension &dimension);
 	void updateArea(const Area &area);

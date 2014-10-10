@@ -71,13 +71,10 @@ void Surface::setTransparentColor(const Color &color) {
 	SDL_SetColorKey(surface, SDL_SRCCOLORKEY | SDL_RLEACCEL, key);
 }
 
-void Surface::drawSurface(Surface *image, const Point &point) {
-	drawSurface( image->toSDL(), point );
-}
-
-void Surface::drawSurface(SDL_Surface* imageSurf, const Point &point) {
-	if( NULL == imageSurf )
+void Surface::drawSurface(Surface * image, const Point &point) {
+	if( NULL == image)
 		return;
+	SDL_Surface* imageSurf = image->toSDL();
 
 	SDL_Rect rectDst = { point.x, point.y, 0, 0 };
 	SDL_Rect rectSrc;

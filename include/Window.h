@@ -14,6 +14,7 @@ class Window : public Surface {
 
 private:
 	string title;
+	string iconPath;
 	unsigned int width;
 	unsigned int height;
 	bool fullScreen;
@@ -24,9 +25,8 @@ public:
 	const static int FLAGS_WINDOW;
 	const static int FLAGS_FULLSCREEN;
 
-	Window(string title, unsigned int width, unsigned int height);
-	Window(string title, unsigned int width, unsigned int height,
-			const char *iconPath, bool fullScreen);
+	Window( const string& title, unsigned int width, unsigned int height );
+	Window( const string& title, unsigned int width, unsigned int height, const string& iconPath, bool fullScreen );
 	void flip();
 
 	/**
