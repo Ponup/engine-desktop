@@ -37,7 +37,6 @@ public:
 
 	void updateArea(const Point &point, const Dimension &dimension);
 	void updateArea(const Area &area);
-	void flip();
 
 	Surface *getArea(const Point &point, const Dimension &dimension);
 	Surface *getArea(const Area &area);

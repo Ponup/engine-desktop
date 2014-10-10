@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Surface.h"
+#include "Window.h"
 
 class DialogFactory {
 
 public:
-	static int showConfirmationDialog(Surface *screen, const char *message);
-	static void showInformationDialog(Surface *screen, const char *message);
-	static char *showInputDialog(Surface *screen, const char *message);
+	static int showConfirmationDialog(Window *screen, const char *message);
+	static void showInformationDialog(Window *screen, const char *message);
+	static char *showInputDialog(Window *screen, const char *message);
 };
 

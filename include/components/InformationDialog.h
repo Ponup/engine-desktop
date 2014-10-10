@@ -7,6 +7,7 @@
 #include "Surface.h"
 #include "Point.h"
 #include "Dimension.h"
+#include "Window.h"
 
 class InformationDialog : public AbstractDialog {
 	
@@ -16,7 +17,7 @@ private:
 
 	Font *font;
 
-	Surface *screen;
+	Window *screen;
 	Surface *window;
 	Surface *backup;
 
@@ -28,7 +29,7 @@ private:
 	void update();
 
 public:
-	InformationDialog(Surface *screen, string message);
+	InformationDialog(Window *screen, string message);
 	~InformationDialog();
 
 	void show();

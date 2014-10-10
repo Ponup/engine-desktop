@@ -97,10 +97,6 @@ void Surface::updateArea(const Area &area) {
 	updateArea(area.getPoint(), area.getDimension());
 }
 
-void Surface::flip() {
-	SDL_Flip( surface );
-}
-
 Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
 	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags | SDL_SRCALPHA, (dimension.w),
 			(dimension.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);

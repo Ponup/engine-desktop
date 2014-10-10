@@ -8,6 +8,7 @@ using std::string;
 #include "SensitiveAreas.h"
 #include "Font.h"
 #include "Surface.h"
+#include "Window.h"
 #include "Point.h"
 #include "Dimension.h"
 
@@ -21,7 +22,7 @@ private:
 
 	Font font;
 
-	Surface *screen;
+	Window *screen;
 	Surface *backup;
 	Surface *window;
 
@@ -33,7 +34,7 @@ private:
 	void update();
 
 public:
-	ConfirmationDialog(Surface *screen, string message);
+	ConfirmationDialog(Window *screen, string message);
 	~ConfirmationDialog();
 
 	int showGetSelected();

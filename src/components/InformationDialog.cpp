@@ -5,7 +5,7 @@
 #include "FontManager.h"
 #include "SurfaceUtil.h"
 
-InformationDialog::InformationDialog(Surface *screen_, string message) : screen(screen_) {
+InformationDialog::InformationDialog(Window *screen_, string message) : screen(screen_) {
 	quit = false;
 
 	font = FontManager::getFont("FreeSansBold", 14);

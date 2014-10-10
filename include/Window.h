@@ -27,6 +27,7 @@ public:
 	Window(string title, unsigned int width, unsigned int height);
 	Window(string title, unsigned int width, unsigned int height,
 			const char *iconPath, bool fullScreen);
+	void flip();
 
 	/**
 	 * Switch between windowed and fullscreen modes.

@@ -5,7 +5,7 @@
 #include "FontManager.h"
 #include "SurfaceUtil.h"
 
-ConfirmationDialog::ConfirmationDialog(Surface *screen_, string message) : screen(screen_) {
+ConfirmationDialog::ConfirmationDialog(Window *screen_, string message) : screen(screen_) {
 	currentOption = 0;
 	
 	selected = DIALOG_CANCEL;

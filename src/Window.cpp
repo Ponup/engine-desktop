@@ -39,3 +39,9 @@ void Window::defineSurface() {
 		fprintf(stderr, "%s\n", SDL_GetError());
 	}
 }
+
+void Window::flip() {
+	SDL_Flip( surface );
+}
+
+
