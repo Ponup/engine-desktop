@@ -1,5 +1,4 @@
-#ifndef EVENTHANDLER_H
-#define EVENTHANDLER_H
+#pragma once
 
 #include <SDL.h>
 
@@ -20,4 +19,3 @@ protected:
 	virtual void onKeyUp(SDL_KeyboardEvent) = 0;
 };
 
-#endif

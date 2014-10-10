@@ -1,5 +1,4 @@
-#ifndef SERVICES_H
-#define SERVICES_H
+#pragma once
 
 #include <vector>
 using std::vector;
@@ -16,4 +15,3 @@ class Services {
 		void destroy();	
 };
 
-#endif

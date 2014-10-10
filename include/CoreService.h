@@ -1,5 +1,4 @@
-#ifndef CORESERVICE_H
-#define CORESERVICE_H
+#pragma once
 
 #include <stdexcept>
 using std::runtime_error;
@@ -24,4 +23,3 @@ public:
 	void destroy();
 };
 
-#endif

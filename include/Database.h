@@ -1,5 +1,4 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#pragma once
 
 #include <sqlite3.h>
 
@@ -29,4 +28,3 @@ public:
 	sqlite3 *toSQLite() const;
 };
 
-#endif

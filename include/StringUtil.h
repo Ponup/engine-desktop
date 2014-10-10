@@ -1,5 +1,4 @@
-#ifndef STRINGUTIL_H
-#define STRINGUTIL_H
+#pragma once
 
 #include <vector>
 using std::vector;
@@ -15,4 +14,3 @@ public:
 	static void tokenize(const string & str, vector<string> & tokens, const char *delim);
 };
 
-#endif

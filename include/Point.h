@@ -1,5 +1,4 @@
-#ifndef POINT_H
-#define POINT_H
+#pragma once
 
 /**
  * Indicates the position of an element on the screen.
@@ -20,6 +19,4 @@ public:
 
 	const char* toString() const;
 };
-
-#endif
 

@@ -1,5 +1,4 @@
-#ifndef BUTTONSKIN_H_
-#define BUTTONSKIN_H_
+#pragma once
 
 #include <Surface.h>
 
@@ -15,4 +14,3 @@ public:
 	Surface *rightSurf;
 };
 
-#endif

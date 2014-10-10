@@ -1,5 +1,4 @@
-#ifndef SERVICE_H
-#define SERVICE_H
+#pragma once
 
 /**
  * Abstract class to take as base to create Kangaroo services. 
@@ -11,4 +10,3 @@ class Service {
 		virtual void destroy() = 0;
 };
 
-#endif

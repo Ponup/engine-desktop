@@ -1,5 +1,4 @@
-#ifndef FONT_H
-#define FONT_H 1
+#pragma once
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -42,4 +41,3 @@ class Font {
 		TTF_Font *toSDL();
 };
 
-#endif

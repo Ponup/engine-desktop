@@ -1,5 +1,4 @@
-#ifndef DIALOGFACTORY_H
-#define DIALOGFACTORY_H
+#pragma once
 
 #include "Surface.h"
 
@@ -10,6 +9,4 @@ public:
 	static void showInformationDialog(Surface *screen, const char *message);
 	static char *showInputDialog(Surface *screen, const char *message);
 };
-
-#endif
 

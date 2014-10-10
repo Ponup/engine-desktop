@@ -1,5 +1,4 @@
-#ifndef DIMENSION_H
-#define DIMENSION_H
+#pragma once
 
 /**
  * Contains information about the dimension of an element.
@@ -15,6 +14,4 @@ class Dimension {
 		
 		const char* toString() const;
 };
-
-#endif
 

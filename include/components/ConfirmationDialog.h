@@ -1,5 +1,4 @@
-#ifndef CONFIRMATION_DIALOG_H
-#define CONFIRMATION_DIALOG_H
+#pragma once
 
 #include <string>
 using std::string;
@@ -40,6 +39,4 @@ public:
 	int showGetSelected();
 	void handleEvents(SDL_Event e);
 };
-
-#endif
 

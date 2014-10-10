@@ -1,5 +1,4 @@
-#ifndef INFORMATION_DIALOG_H
-#define INFORMATION_DIALOG_H
+#pragma once
 
 #include "components/AbstractDialog.h"
 #include "components/Button.h"
@@ -35,6 +34,4 @@ public:
 	void show();
 	void handleEvents(SDL_Event e);
 };
-
-#endif
 

@@ -1,5 +1,4 @@
-#ifndef FONTMANAGER_H
-#define FONTMANAGER_H
+#pragma once
 
 #include "Font.h"
 
@@ -17,4 +16,3 @@ public:
 	static void destroy();
 };
 
-#endif

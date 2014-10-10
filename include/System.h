@@ -1,5 +1,4 @@
-#ifndef SYSTEM_H
-#define SYSTEM_H
+#pragma once
 
 #include <SDL.h>
 
@@ -12,4 +11,3 @@ class System {
 		static void setKeyRepeat(int delay = SDL_DEFAULT_REPEAT_DELAY, int interval = SDL_DEFAULT_REPEAT_INTERVAL);
 };
 
-#endif

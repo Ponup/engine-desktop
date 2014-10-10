@@ -1,5 +1,4 @@
-#ifndef RANDOM_H
-#define RANDOM_H
+#pragma once
 
 #include <vector>
 using std::vector;
@@ -16,4 +15,3 @@ public:
 	static int *nextArray(int *list, int size, unsigned int limit);
 };
 
-#endif

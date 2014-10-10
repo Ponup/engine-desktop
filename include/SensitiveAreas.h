@@ -1,5 +1,4 @@
-#ifndef SENSITIVE_AREAS_H
-#define SENSITIVE_AREAS_H
+#pragma once
 
 #include <vector>
 using std::vector;
@@ -18,4 +17,3 @@ class SensitiveAreas {
 		int resolve(int x, int y) const;
 };
 
-#endif

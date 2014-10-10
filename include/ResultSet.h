@@ -1,5 +1,4 @@
-#ifndef RESULTSET_H
-#define RESULTSET_H
+#pragma once
 
 class ResultSet {
 	
@@ -19,4 +18,3 @@ public:
 	int getInt(int row, int column) const;
 };
 
-#endif

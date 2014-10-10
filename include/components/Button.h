@@ -1,5 +1,4 @@
-#ifndef BUTTON_H_
-#define BUTTON_H_
+#pragma once
 
 #include "Point.h"
 #include "Dimension.h"
@@ -45,4 +44,3 @@ public:
 	void draw(Surface *surface);
 };
 
-#endif

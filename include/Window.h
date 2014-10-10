@@ -1,5 +1,4 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#pragma once
 
 #include <string>
 using std::string;
@@ -35,4 +34,3 @@ public:
 	void toggleFullScreen();
 };
 
-#endif

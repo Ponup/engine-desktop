@@ -1,5 +1,4 @@
-#ifndef TEXT_H
-#define TEXT_H
+#pragma once
 
 #include <string>
 using std::string;
@@ -39,4 +38,3 @@ public:
 			Surface *surface);
 };
 
-#endif

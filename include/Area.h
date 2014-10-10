@@ -1,5 +1,4 @@
-#ifndef AREA_H
-#define AREA_H
+#pragma once
 
 #include <SDL.h>
 
@@ -34,6 +33,4 @@ public:
 	SDL_Rect toSDL() const;
 	const char *toString() const;
 };
-
-#endif
 

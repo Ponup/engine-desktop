@@ -1,5 +1,4 @@
-#ifndef PRIMITIVES_H
-#define PRIMITIVES_H
+#pragma once
 
 #include <SDL.h>
 
@@ -15,4 +14,3 @@ class Primitives {
 		static void drawLine(Surface * surface, const Point & from, const Point & to, const Color & color);
 };
 
-#endif

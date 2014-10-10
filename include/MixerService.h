@@ -1,5 +1,4 @@
-#ifndef MIXERSERVICE_H
-#define MIXERSERVICE_H
+#pragma once
 
 #include "Service.h"
 
@@ -20,4 +19,3 @@ class MixerService : public Service {
 		void destroy();
 };
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef FONTSERVICE_H
-#define FONTSERVICE_H
+#pragma once
 
 #include "Service.h"
 
@@ -15,4 +14,3 @@ public:
 	void destroy();
 };
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef MEDIAMANAGER_H
-#define MEDIAMANAGER_H
+#pragma once
 
 #include <map>
 using std::map;
@@ -20,4 +19,3 @@ public:
 	void playSound(const char *name);
 };
 
-#endif

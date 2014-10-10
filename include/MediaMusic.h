@@ -1,5 +1,4 @@
-#ifndef MEDIAMUSIC_H
-#define MEDIAMUSIC_H
+#pragma once
 
 #include <SDL_mixer.h>
 
@@ -26,4 +25,3 @@ public:
 	Mix_Music *toSDL() const;
 };
 
-#endif

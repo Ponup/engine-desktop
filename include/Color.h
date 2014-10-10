@@ -1,5 +1,4 @@
-#ifndef COLOR_H
-#define COLOR_H
+#pragma once
 
 #include <SDL.h>
 
@@ -21,4 +20,3 @@ class Color {
 		SDL_Color toSDL() const;
 };
 
-#endif

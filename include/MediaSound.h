@@ -1,5 +1,4 @@
-#ifndef MEDIASOUND_H
-#define MEDIASOUND_H
+#pragma once
 
 #include <SDL_mixer.h>
 
@@ -19,4 +18,3 @@ class MediaSound {
 		Mix_Chunk* toSDL();
 };
 
-#endif

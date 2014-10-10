@@ -1,5 +1,4 @@
-#ifndef PROPERTIES_H
-#define PROPERTIES_H
+#pragma once
 
 #define LINE_SIZE 256
 
@@ -33,4 +32,3 @@ class Properties {
 			void setBoolProperty(const string propertyName, bool propertyValue);
 };
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef SURFACE_H
-#define SURFACE_H
+#pragma once
 
 #include <SDL.h>
 
@@ -47,4 +46,3 @@ public:
 	SDL_Surface *toSDL();
 };
 
-#endif

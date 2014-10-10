@@ -1,5 +1,4 @@
-#ifndef ABSTRACTDIALOG_H
-#define ABSTRACTDIALOG_H
+#pragma once
 
 #include <SDL.h>
 
@@ -16,6 +15,4 @@ class AbstractDialog {
 		virtual void update() = 0;
 		virtual void handleEvents(SDL_Event e) = 0;
 };
-
-#endif
 

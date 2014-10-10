@@ -1,5 +1,4 @@
-#ifndef MATHUTIL_H
-#define MATHUTIL_H
+#pragma once
 
 #include <math.h>
 
@@ -30,4 +29,3 @@ public:
 	static vector<Point> calculatePath( pair<double, double> a, pair<double, double> b );
 };
 
-#endif

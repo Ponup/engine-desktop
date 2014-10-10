@@ -1,5 +1,4 @@
-#ifndef FRAMEREGULATOR_H
-#define FRAMEREGULATOR_H
+#pragma once
 
 class FrameRegulator {
 	
@@ -14,6 +13,4 @@ public:
 	void setUp();
 	void regulate();
 };
-
-#endif
 

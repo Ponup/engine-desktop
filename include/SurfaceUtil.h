@@ -1,5 +1,4 @@
-#ifndef SURFACEUTIL_H
-#define SURFACEUTIL_H
+#pragma once
 
 #include "Surface.h"
 #include "Point.h"
@@ -14,4 +13,3 @@ class SurfaceUtil {
 		static bool fadeOut(Surface *surface, Surface *parent, const Point &to);
 };
 
-#endif
