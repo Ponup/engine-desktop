@@ -1,5 +1,7 @@
 #include "Services.h"
 
+using namespace Kangaroo;
+
 void Services::addService(Service * service) {
 	services.push_back(service);
 }
@@ -18,3 +20,4 @@ void Services::destroy() {
 	}
 	services.clear();
 }
+

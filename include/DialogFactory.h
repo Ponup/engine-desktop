@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+using std::string;
+
 #include "Window.h"
 
 class DialogFactory {

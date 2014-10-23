@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Contains information about the dimension of an element.
+ * Contains information about the size of an element.
  */
 class Dimension {
 	public:

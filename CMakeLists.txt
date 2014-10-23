@@ -4,7 +4,7 @@ FILE(GLOB_RECURSE KANGAROO_SOURCES "src/*.cpp")
 INCLUDE_DIRECTORIES(${KANGAROO_INCLUDE_DIR})
 
 IF(UNIX)
-	ADD_DEFINITIONS(-std=c++11 -pedantic -pedantic-errors -Wall -Werror `sdl-config --cflags`)
+	ADD_DEFINITIONS(-std=c++11 -pedantic -pedantic-errors -Wall -Werror `sdl2-config --cflags`)
 ELSE(UNIX)
 	ADD_DEFINITIONS(-Wall)
 ENDIF(UNIX)

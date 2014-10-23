@@ -4,7 +4,7 @@
 using std::runtime_error;
 
 #include <stdio.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 MediaSound::MediaSound() {
 	sound = NULL;

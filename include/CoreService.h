@@ -1,11 +1,12 @@
 #pragma once
 
+#include <SDL2/SDL.h>
+
 #include <stdexcept>
 using std::runtime_error;
 
-#include <SDL.h>
-
 #include "Service.h"
+
 
 /**
  * This service initializes the SDL library.

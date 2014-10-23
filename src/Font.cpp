@@ -18,7 +18,7 @@ void Font::load(const char *fontPath, unsigned int size) {
 
 	font = TTF_OpenFont(fontPath, size);
 	if(font == NULL) {
-		char *errorMsg = TTF_GetError();
+		const char *errorMsg = TTF_GetError();
 		fprintf(stderr, "%s\n", errorMsg);
 		fflush(stderr);
 		throw std::runtime_error(errorMsg);

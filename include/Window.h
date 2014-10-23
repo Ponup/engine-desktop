@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL2/SDL.h>
+
 #include <string>
 using std::string;
 
@@ -10,7 +12,7 @@ using std::string;
  * 
  * @see Surface
  */
-class Window : public Surface {
+class Window  {
 
 private:
 	string title;
@@ -19,7 +21,15 @@ private:
 	unsigned int height;
 	bool fullScreen;
 
+	SDL_Surface* surface;
+	SDL_Window* window;
+
 	void defineSurface();
+
+public:
+	static SDL_Renderer* renderer;
+	static SDL_Texture* texture;
+
 
 public:
 	const static int FLAGS_WINDOW;
@@ -27,6 +37,11 @@ public:
 
 	Window( const string& title, unsigned int width, unsigned int height );
 	Window( const string& title, unsigned int width, unsigned int height, const string& iconPath, bool fullScreen );
+	~Window();
+
+	void drawSurface( Surface* image, const Point &point = Point::Origin );
+	Dimension getDimension() const;
+	SDL_Window* toSDL();
 	void flip();
 
 	/**

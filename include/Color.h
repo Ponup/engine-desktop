@@ -1,22 +1,17 @@
 #pragma once
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 /**
  * Color definition, taking four parameters (r, g, b and a channel)
  */
-class Color {
-	public:
-		unsigned char r;
-		unsigned char g;
-		unsigned char b;
-		unsigned char a;		
+class Color : public SDL_Color {
 
-		Color();
-		Color( unsigned char r, unsigned char g, unsigned char b );
-		Color( unsigned char r, unsigned char g, unsigned char b, unsigned char a );
-		
-		Uint32 toSDL( SDL_Surface* surface ) const;
-		SDL_Color toSDL() const;
+public:
+	Color();
+	Color( Uint8 r, Uint8 g, Uint8 b );
+	Color( Uint8 r, Uint8 g, Uint8 b, Uint8 a );
+	
+	Uint32 toSDL( SDL_Surface* surface ) const;
 };
 

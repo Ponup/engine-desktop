@@ -1,7 +1,7 @@
 #include "MixerService.h"
 
 #include <stdio.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 
 MixerService::MixerService() : frequency(MIX_DEFAULT_FREQUENCY), channels(2) {
 }

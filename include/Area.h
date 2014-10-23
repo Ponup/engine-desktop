@@ -1,26 +1,25 @@
 #pragma once
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
+
+#include <string>
+using std::string;
 
 #include "Point.h"
 #include "Dimension.h"
 
 /**
- * Contains information about a delimited area, indicated by a dimension (width, height), and its position.
+ * Contains information about a region, indicated by a dimension (width, height), and its position.
  * 
  * @see Point
  * @see Dimension
  */
-class Area{
-
-private :
-	Point point;
-	Dimension dimension;
+class Area : public SDL_Rect {
 
 public:
 	Area() { }
-	Area(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : point(x, y), dimension(width, height) { }
-	Area(const Point &point_, const Dimension &dimension_) : point(point_), dimension(dimension_) { }
+	Area(unsigned int x_, unsigned int y_, unsigned int width, unsigned int height) { x = x_; y = y_; w = width; h = height; }
+	Area(const Point &point_, const Dimension &dimension_) { x = point_.x; y = point_.y; w = dimension_.w; h = dimension_.h; }
 
 	void setPoint(const Point &point);
 	Point getPoint() const;
@@ -30,7 +29,6 @@ public:
 	
 	bool contains(short x, short y) const;
 	
-	SDL_Rect toSDL() const;
-	const char *toString() const;
+	string toString() const;
 };
 

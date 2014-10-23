@@ -1,51 +1,38 @@
 #include "Area.h"
 
+#include <sstream>
+using std::ostringstream;
+
 void Area::setPoint(const Point &point) {
-	this->point = point;
+	x = point.x;
+	y = point.y;
 }
 
 Point Area::getPoint() const {
-	return point;
+	return Point( x, y );
 }
 
 void Area::setDimension(const Dimension &dimension) {
-	this->dimension = dimension;
+	w = dimension.w;
+	h = dimension.h;
 }
 
 Dimension Area::getDimension() const {
-	return dimension;
+	return Dimension( w, h );
 }
 
-bool Area::contains(short x, short y) const {
+bool Area::contains( short x_, short y_ ) const {
 	return (
-		x >= point.x &&
-		x <= point.x + dimension.w &&
-		y >= point.y &&
-		y <= point.y + dimension.h
+		x_ >= x &&
+		x_ <= x + w &&
+		y_ >= y &&
+		y_ <= y + h
 	);
 }
 
-SDL_Rect Area::toSDL() const {
-	SDL_Rect rect;
-	rect.x = point.x;
-	rect.y = point.y;
-	rect.w = dimension.w;
-	rect.h = dimension.h;
-	
-	return rect;
-}
-
-const char *Area::toString() const {
-	char *text = (char *)calloc(60, sizeof(char));
-	if(!text) return NULL;
-
-	sprintf(text, "Area [ x: %d, y: %d, width: %d, height: %d ]",
-		point.x,
-		point.y,
-		dimension.w,
-		dimension.h
-	);
-	
-	return text;
+string Area::toString() const {
+	ostringstream oss;
+	oss << "Area [ x: " << x << " y: " << y << ", width: " << w << ", height: " << h << " ]";
+	return oss.str();
 }
 

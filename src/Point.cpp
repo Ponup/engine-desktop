@@ -1,8 +1,9 @@
 #include "Point.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <sstream>
+using std::ostringstream;
+
+const Point Point::Origin( 0, 0 );
 
 Point Point::operator-( const Point& point ) {
 	return Point( x - point.x, y - point.y );
@@ -22,12 +23,9 @@ bool Point::operator==( const Point &point ) {
 	return ( x == point.x && y == point.y );
 }
 
-const char* Point::toString() const {
-	char* text = (char*)calloc( 30, sizeof( char ) );
-	if( !text ) return NULL;
-
-	sprintf( text, "Point [ x: %d, y: %d ]", x, y );
-
-	return text;
+string Point::toString() const {
+	ostringstream oss;
+	oss << "Point [ x: " << x << ", y: " << y << " ]";
+	return oss.str();
 }
 

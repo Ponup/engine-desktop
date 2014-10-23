@@ -19,7 +19,7 @@ void Primitives::drawPixel(Surface * surface, const Point & point, const Color &
     if(SDL_MUSTLOCK(screen)) {
         SDL_UnlockSurface(screen);
     }
-    SDL_UpdateRect(screen, point.x, point.y, 1, 1);
+    //SDL_UpdateRect(screen, point.x, point.y, 1, 1);
 }	
 
 void Primitives::drawLine(Surface * surface, const Point & from, const Point & to, const Color & color) {

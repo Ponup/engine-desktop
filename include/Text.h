@@ -3,10 +3,10 @@
 #include <string>
 using std::string;
 
-#include "Surface.h"
 #include "Font.h"
 #include "Dimension.h"
 #include "Point.h"
+#include "Surface.h"
 
 class Text {
 

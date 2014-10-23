@@ -1,12 +1,12 @@
 #pragma once
 
-#include <math.h>
-
 #include <utility>
 using std::pair;
 
 #include <vector>
 using std::vector;
+
+#include <cmath>
 
 #include "Point.h"
 

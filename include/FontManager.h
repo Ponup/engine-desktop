@@ -1,18 +1,21 @@
 #pragma once
 
-#include "Font.h"
-
 #include <map>
 using std::map;
 
-typedef map<char*, Font*> FontMap;
+#include <string>
+using std::string;
+
+#include "Font.h"
+
+typedef map<string, Font*> FontMap;
 
 class FontManager {
 
 	static FontMap fontMap;
 
 public:
-	static Font* getFont(const char *name, unsigned int size);
+	static Font* getFont( const string& name, unsigned int size );
 	static void destroy();
 };
 

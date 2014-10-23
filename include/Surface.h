@@ -1,14 +1,7 @@
 #pragma once
 
-#include <SDL.h>
-
-#include <stdexcept>
-using std::runtime_error;
-
-#include "Color.h"
-#include "Point.h"
-#include "Dimension.h"
 #include "Area.h"
+#include "Color.h"
 
 /**
  * This class manages the logic and information of a canvas.
@@ -32,13 +25,13 @@ public:
 	void clean();
 	void clean(const Color &color);
 	void setTransparentColor(const Color &color);
-	void drawSurface( Surface* image, const Point &point );
+	void drawSurface( Surface* image, const Point &point = Point::Origin );
 
 	void updateArea(const Point &point, const Dimension &dimension);
 	void updateArea(const Area &area);
 
-	Surface *getArea(const Point &point, const Dimension &dimension);
-	Surface *getArea(const Area &area);
+	Surface *getArea( const Point&, const Dimension& );
+	Surface *getArea( const Area& area );
 
 	void transform( double angle, double zoom = 1, int smooth = 1 );
 

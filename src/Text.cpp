@@ -1,6 +1,6 @@
 #include "Text.h"
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "StringUtil.h"
 
@@ -57,22 +57,22 @@ void Text::draw( const Point &point, Surface *surface ) {
 	switch (font->getStyle()) {
 	case BLENDED:
 		fontSurface
-				= TTF_RenderUTF8_Blended(font->toSDL(), text.c_str(), color.toSDL());
+				= TTF_RenderUTF8_Blended(font->toSDL(), text.c_str(), color );
 		break;
 	case SOLID:
-		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text.c_str(), color.toSDL());
+		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text.c_str(), color );
 		break;
 	case SHADED:
 	default: {
 		SDL_Color bgColor = { 0, 0, 0 };
-		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text.c_str(), color.toSDL(),
+		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text.c_str(), color,
 				bgColor);
 	} break;
 	}
 
 	// @TODO
 	if(fontSurface) {
-		SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
+		//SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
 		SDL_Rect dstRect = { point.x, point.y, 0, 0 };
 		SDL_BlitSurface(fontSurface, NULL, surface->toSDL(), &dstRect);
 		SDL_FreeSurface(fontSurface);

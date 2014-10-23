@@ -1,20 +1,29 @@
 #include "Surface.h"
 
-#include <SDL_image.h>
-#include <SDL_rotozoom.h>
+#include <stdexcept>
+using std::runtime_error;
+
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL2_rotozoom.h>
 
 #include "StringUtil.h"
+
+#include "Window.h"
 
 Surface::Surface() {
 }
 
 Surface::Surface(SDL_Surface *surface) {
+	if( nullptr == surface )
+	{
+		throw std::runtime_error( "surface is null" );
+	}
 	this->surface = SDL_ConvertSurface(surface, surface->format, SDL_SWSURFACE);
 }
 
 Surface::Surface(Surface *surface, const Dimension &dimension) {
 	SDL_Surface *x = surface->toSDL();
-	this->surface = SDL_CreateRGBSurface((x)->flags | SDL_SRCALPHA, dimension.w,
+	this->surface = SDL_CreateRGBSurface((x)->flags /*| SDL_SRCALPHA*/, dimension.w,
 			dimension.h, (x)->format->BitsPerPixel, (x)->format->Rmask, (x)->format->Gmask, (x)->format->Bmask, (x)->format->Amask);
 }
 
@@ -24,17 +33,10 @@ Surface::Surface(const char *path, bool hasAlphaChannel) {
 
 void Surface::load(const char *path, bool hasAlphaChannel) {
 	SDL_Surface *normal = IMG_Load(path);
-	if (!normal)
+	if ( nullptr == normal)
 		throw runtime_error(IMG_GetError());
-
-	SDL_Surface *optimized = (hasAlphaChannel ? SDL_DisplayFormatAlpha(normal)
-			: SDL_DisplayFormat(normal));
-	if (optimized != NULL) {
-		SDL_FreeSurface(normal);
-		surface = optimized;
-	} else {
-		surface = normal;
-	}
+			
+	surface = normal;
 }
 
 Surface::~Surface() {
@@ -45,11 +47,6 @@ Surface::~Surface() {
 }
 
 void Surface::optimize() {
-	SDL_Surface *optimized = SDL_DisplayFormat(surface);
-	if (optimized != NULL) {
-		SDL_FreeSurface(surface);
-		surface = optimized;
-	}
 }
 
 Dimension Surface::getDimension() const {
@@ -67,8 +64,8 @@ void Surface::clean(const Color &color) {
 }
 
 void Surface::setTransparentColor(const Color &color) {
-	Uint32 key = SDL_MapRGB( surface->format, color.r, color.g, color.b );
-	SDL_SetColorKey(surface, SDL_SRCCOLORKEY | SDL_RLEACCEL, key);
+	//Uint32 key = SDL_MapRGB( surface->format, color.r, color.g, color.b );
+	//SDL_SetColorKey(surface, SDL_SRCCOLORKEY | SDL_RLEACCEL, key);
 }
 
 void Surface::drawSurface(Surface * image, const Point &point) {
@@ -87,8 +84,7 @@ void Surface::drawSurface(Surface * image, const Point &point) {
 }
 
 void Surface::updateArea(const Point &point, const Dimension &dimension) {
-	SDL_UpdateRect(surface, point.x, point.y, dimension.w,
-			dimension.h);
+	//SDL_UpdateRect(surface, point.x, point.y, dimension.w, dimension.h);
 }
 
 void Surface::updateArea(const Area &area) {
@@ -96,21 +92,25 @@ void Surface::updateArea(const Area &area) {
 }
 
 Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
-	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags | SDL_SRCALPHA, (dimension.w),
+	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags /*| SDL_SRCALPHA*/, (dimension.w),
 			(dimension.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
-	SDL_Rect rect = { point.x, point.y, dimension.w,
-			dimension.h };
+	SDL_Rect rect = { point.x, point.y, dimension.w, dimension.h };
 	SDL_BlitSurface(surface, &rect, area, NULL);
 
 	return new Surface(area);
 }
 
-Surface * Surface::getArea(const Area & area) {
-	return getArea(area.getPoint(), area.getDimension());
+Surface * Surface::getArea(const Area & areap) {
+	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags /*| SDL_SRCALPHA*/, (areap.w),
+			(areap.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
+	SDL_Rect rect = areap; 
+	SDL_BlitSurface(surface, &rect, area, NULL);
+
+	return new Surface(area);
 }
 
 void Surface::setOpacity(Uint8 opacity) {
-	SDL_SetAlpha(surface, SDL_RLEACCEL | SDL_SRCALPHA, opacity);
+	//SDL_SetAlpha(surface, SDL_RLEACCEL | SDL_SRCALPHA, opacity);
 }
 
 void Surface::transform( double angle, double zoom, int smooth ) {

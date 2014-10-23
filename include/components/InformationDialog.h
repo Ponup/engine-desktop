@@ -1,38 +1,22 @@
 #pragma once
 
-#include "components/AbstractDialog.h"
-#include "components/Button.h"
-#include "SensitiveAreas.h"
-#include "Font.h"
-#include "Surface.h"
-#include "Point.h"
-#include "Dimension.h"
+#include <string>
+using std::string;
+
+#include "AbstractDialog.h"
 #include "Window.h"
 
 class InformationDialog : public AbstractDialog {
 	
 private:
-	SensitiveAreas sensAreas;
-	bool quit;
-
-	Font *font;
 
 	Window *screen;
-	Surface *window;
-	Surface *backup;
-
-	Button *button;
-
-	Point windowPosition;
-	Dimension windowDimension;
-
-	void update();
+	string message;
 
 public:
-	InformationDialog(Window *screen, string message);
+	InformationDialog(Window *screen, const string& message_);
 	~InformationDialog();
 
 	void show();
-	void handleEvents(SDL_Event e);
 };
 

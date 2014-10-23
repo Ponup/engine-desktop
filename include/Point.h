@@ -1,22 +1,27 @@
 #pragma once
 
-/**
- * Indicates the position of an element on the screen.
- */
-class Point {
-public:
-	short x;
-	short y;
+#include <SDL2/SDL_rect.h>
 
-	Point() : x( 0 ), y( 0 ) {}
-	Point( const Point& point ) : x( point.x ), y( point.y ) {}
-	Point( short x_, short y_ ) : x( x_ ), y( y_ ) {}
+#include <string>
+using std::string;
+
+/**
+ * Indicates the position of an element on a 2D space.
+ */
+class Point : public SDL_Point {
+
+public:
+	const static Point Origin;
+
+	Point() { x = y = 0; }
+	Point( const Point& point ) { x = point.x; y = point.y; }
+	Point( short x_, short y_ ) { x = x_; y = y_; }
 
 	Point operator-( const Point& point );
 	Point operator+( const Point& point );
 	Point operator=( const Point& point );
 	bool operator==( const Point& point );
 
-	const char* toString() const;
+	string toString() const;
 };
 
