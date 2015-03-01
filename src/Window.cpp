@@ -1,8 +1,8 @@
 #include "Window.h"
 
 #include <stdio.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 const int Window::FLAGS_WINDOW = SDL_WINDOW_SHOWN;
 const int Window::FLAGS_FULLSCREEN = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN;

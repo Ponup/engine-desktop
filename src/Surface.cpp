@@ -3,8 +3,8 @@
 #include <stdexcept>
 using std::runtime_error;
 
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL2_rotozoom.h>
+#include <SDL_image.h>
+#include <SDL2_rotozoom.h>
 
 #include "StringUtil.h"
 

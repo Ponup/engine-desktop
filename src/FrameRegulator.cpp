@@ -1,6 +1,6 @@
 #include "FrameRegulator.h"
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 void FrameRegulator::setUp() {
 	referenceTime = SDL_GetTicks();

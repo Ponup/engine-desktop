@@ -1,6 +1,6 @@
 #include "components/ConfirmationDialog.h"
 
-#include <SDL2/SDL2_gfxPrimitives.h>
+#include <SDL2_gfxPrimitives.h>
 
 #include "FontManager.h"
 #include "SurfaceUtil.h"
@@ -22,7 +22,7 @@ int ConfirmationDialog::showGetSelected() {
 		message.c_str(), /* .message */
 		SDL_arraysize(buttons), /* .numbuttons */
 		buttons, /* .buttons */
-		&colorScheme /* .colorScheme */
+		colorScheme /* .colorScheme */
 	};
 	int buttonid;
 	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {

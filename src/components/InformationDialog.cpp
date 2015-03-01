@@ -1,6 +1,6 @@
 #include "components/InformationDialog.h"
 
-#include <SDL2/SDL2_gfxPrimitives.h>
+#include <SDL2_gfxPrimitives.h>
 
 #include "FontManager.h"
 #include "SurfaceUtil.h"
@@ -21,7 +21,7 @@ void InformationDialog::show() {
 		message.c_str(), /* .message */
 		SDL_arraysize(buttons), /* .numbuttons */
 		buttons, /* .buttons */
-		&colorScheme /* .colorScheme */
+		colorScheme /* .colorScheme */
 	};
 	int buttonid;
 	SDL_ShowMessageBox(&messageboxdata, &buttonid);

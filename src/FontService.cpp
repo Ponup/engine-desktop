@@ -1,6 +1,8 @@
 #include "FontService.h"
 
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
+
+#include <cstdio>
 
 void FontService::init() {
 	if(TTF_Init() == -1) {
