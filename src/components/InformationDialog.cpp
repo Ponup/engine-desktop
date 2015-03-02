@@ -1,7 +1,5 @@
 #include "components/InformationDialog.h"
 
-#include <SDL2_gfxPrimitives.h>
-
 #include "FontManager.h"
 #include "SurfaceUtil.h"
 

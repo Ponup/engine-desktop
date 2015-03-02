@@ -2,14 +2,14 @@
 
 #include <SDL_ttf.h>
 
-#include <cstdio>
-
-void FontService::init() {
-	if(TTF_Init() == -1) {
-		fprintf(stderr, "%s\n", TTF_GetError());
+void FontService::init() throw (std::runtime_error) {
+	if( -1 == TTF_Init() )
+	{
+		throw runtime_error( TTF_GetError() );
 	}	
 }
 
 void FontService::destroy() {
 	TTF_Quit();
 }
+

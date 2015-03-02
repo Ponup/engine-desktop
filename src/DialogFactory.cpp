@@ -14,6 +14,6 @@ void DialogFactory::showInformationDialog(Window *screen, const char *message) {
 }
 
 char *DialogFactory::showInputDialog(Window *screen, const char *message) {
-	return NULL;
+	return nullptr;
 }
 

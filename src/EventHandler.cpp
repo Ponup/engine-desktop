@@ -39,3 +39,4 @@ void EventHandler::onKeyDown(SDL_KeyboardEvent key) {
 }
 void EventHandler::onKeyUp(SDL_KeyboardEvent key) {
 }
+

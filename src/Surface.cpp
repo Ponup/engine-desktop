@@ -57,12 +57,12 @@ Dimension Surface::getDimension() const {
 
 void Surface::clean() {
 	Uint32 a = SDL_MapRGB(surface->format, 200, 200, 200);
-	SDL_FillRect(surface, NULL, a);
+	SDL_FillRect(surface, nullptr, a);
 }
 
 void Surface::clean(const Color &color) {
 	Uint32 a = SDL_MapRGB( surface->format, color.r, color.g, color.b );
-	SDL_FillRect(surface, NULL, a);
+	SDL_FillRect(surface, nullptr, a);
 }
 
 void Surface::setTransparentColor(const Color &color) {
@@ -71,7 +71,7 @@ void Surface::setTransparentColor(const Color &color) {
 }
 
 void Surface::drawSurface(Surface * image, const Point &point) {
-	if( NULL == image)
+	if( nullptr == image)
 		return;
 	SDL_Surface* imageSurf = image->toSDL();
 
@@ -97,7 +97,7 @@ Surface * Surface::getArea(const Point & point, const Dimension & dimension) {
 	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags /*| SDL_SRCALPHA*/, (dimension.w),
 			(dimension.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
 	SDL_Rect rect = { point.x, point.y, dimension.w, dimension.h };
-	SDL_BlitSurface(surface, &rect, area, NULL);
+	SDL_BlitSurface(surface, &rect, area, nullptr);
 
 	return new Surface(area);
 }
@@ -106,7 +106,7 @@ Surface * Surface::getArea(const Area & areap) {
 	SDL_Surface * area = SDL_CreateRGBSurface((surface)->flags /*| SDL_SRCALPHA*/, (areap.w),
 			(areap.h), (surface)->format->BitsPerPixel, (surface)->format->Rmask, (surface)->format->Gmask, (surface)->format->Bmask, (surface)->format->Amask);
 	SDL_Rect rect = areap; 
-	SDL_BlitSurface(surface, &rect, area, NULL);
+	SDL_BlitSurface(surface, &rect, area, nullptr);
 
 	return new Surface(area);
 }

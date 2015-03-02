@@ -18,23 +18,23 @@ private:
 
 public:
 	Text();
-	Text(string text);
-	Text(string text, Font *font);
+	Text( const string& text );
+	Text( const string& text, Font *font );
 	~Text();
 
-	void setText(string text);
+	void setText( const string& text );
 	string getText() const;
-	void setFont(Font *font);
+	void setFont( Font *font );
 	Font *getFont() const;
 	Dimension getDimension() const;
 
-	void setAlpha(int alpha);
+	void setAlpha( int alpha );
 	
-	void draw(const Point &point, Surface *surface);
-	void drawLines(const Point &point, const Dimension &dimension,
+	void draw( const Point &point, Surface *surface);
+	void drawLines( const Point &point, const Dimension &dimension,
 			Surface *surface);
 
-	static void drawString(string text, const Point &point, Font *font,
+	static void drawString( const string& text, const Point &point, Font *font,
 			Surface *surface);
 };
 

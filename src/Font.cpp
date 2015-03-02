@@ -1,9 +1,6 @@
 #include "Font.h"
 
-#include <stdio.h>
-
 #include <stdexcept>
-using std::runtime_error;
 
 Font::Font() {
 }
@@ -17,11 +14,8 @@ void Font::load(const char *fontPath, unsigned int size) {
 	this->size = size;
 
 	font = TTF_OpenFont(fontPath, size);
-	if(font == NULL) {
-		const char *errorMsg = TTF_GetError();
-		fprintf(stderr, "%s\n", errorMsg);
-		fflush(stderr);
-		throw std::runtime_error(errorMsg);
+	if(font == nullptr) {
+		throw std::runtime_error( TTF_GetError() );
 	}
 	style = BLENDED;
 }
@@ -34,9 +28,9 @@ Font::Font(const Font &font) {
 }
 
 Font::~Font() {
-	if(font != NULL) {
+	if(font != nullptr) {
 		TTF_CloseFont(font);
-		font = NULL;
+		font = nullptr;
 	}
 }
 

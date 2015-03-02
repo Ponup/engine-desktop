@@ -2,6 +2,9 @@
 
 #include "Service.h"
 
+#include <stdexcept>
+using std::runtime_error;
+
 /**
  * This service initializes the SDL_ttf library.
  * 
@@ -10,7 +13,7 @@
 class FontService : public Service {
 	
 public:
-	void init();
+	void init() throw( runtime_error );
 	void destroy();
 };
 

@@ -12,7 +12,7 @@ ResultSet::ResultSet(char **data, int rowsNum, int colsNum) {
 
 ResultSet::~ResultSet() {
 	sqlite3_free_table(data);
-	data = NULL;
+	data = nullptr;
 }
 
 int ResultSet::columnCount() const {
@@ -22,9 +22,8 @@ int ResultSet::columnCount() const {
 char* ResultSet::getColumn(int index) const {
 	if (index < colsNum) {
 		return data[index];
-	} else {
-		return NULL;
 	}
+	return nullptr;
 }
 
 unsigned int ResultSet::rowsCount() const {

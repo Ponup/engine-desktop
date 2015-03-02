@@ -11,7 +11,7 @@ SDL_Renderer* Window::renderer = nullptr;
 SDL_Texture* Window::texture = nullptr;
 
 Window::Window( const string& title, unsigned int width, unsigned int height) {
-	*this = Window(title, width, height, NULL, false);
+	*this = Window(title, width, height, nullptr, false);
 }
 
 Window::Window( const string& title_, unsigned int width_, unsigned int height_, const string& iconPath_, bool fullScreen_) :
@@ -27,14 +27,14 @@ Window::~Window() {
 }
 
 void Window::drawSurface(Surface * image, const Point &point) {
-	if( NULL == image)
+	if( nullptr == image)
 		return;
 	SDL_Surface* imageSurf = image->toSDL();
 	if (imageSurf == nullptr) {
 		return;
 	}
 
-	SDL_Rect rectDst = { point.x, point.y, 0, 0 };
+	//SDL_Rect rectDst = { point.x, point.y, 0, 0 };
 	SDL_Rect rectSrc;
 
 	rectSrc.x = rectSrc.y = 0;
@@ -47,13 +47,13 @@ void Window::drawSurface(Surface * image, const Point &point) {
 
 //	SDL_RenderClear( renderer );
 	//SDL_RenderCopy( renderer, texture, &rectSrc, &rectDst);
-	SDL_RenderCopy( renderer, texture, NULL, NULL);
+	SDL_RenderCopy( renderer, texture, nullptr, nullptr);
 	SDL_DestroyTexture(texture);
 }
 
 void Window::toggleFullScreen() {
 	fullScreen = !fullScreen;
-	SDL_SetWindowFullscreen(window, fullScreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+	SDL_SetWindowFullscreen( window, fullScreen ? SDL_WINDOW_FULLSCREEN : 0 );
 }
 
 void Window::defineSurface() {
@@ -68,7 +68,7 @@ void Window::defineSurface() {
 
 	if (!iconPath.empty()) {
 		SDL_Surface *icon = IMG_Load(iconPath.c_str());
-		if (icon != NULL) {
+		if (icon != nullptr) {
 			SDL_SetWindowIcon( window, icon );
 			SDL_FreeSurface(icon);
 		}
@@ -87,8 +87,8 @@ Dimension Window::getDimension() const {
 }
 
 void Window::flip() {
-//	SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-//	SDL_RenderCopy(renderer, texture, NULL, NULL);
+//	SDL_UpdateTexture(texture, nullptr, surface->pixels, surface->pitch);
+//	SDL_RenderCopy(renderer, texture, nullptr, nullptr);
 	SDL_RenderPresent( renderer );
 }
 

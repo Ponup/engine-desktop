@@ -36,11 +36,11 @@ bool SurfaceUtil::fadeIn(Surface * surface, Surface * parent, const Point & to) 
 	
 	for(int alpha = SDL_ALPHA_TRANSPARENT; alpha < SDL_ALPHA_OPAQUE && quit == false; alpha++) {
 		// Draw the background surface
-		SDL_BlitSurface(backup, NULL, screen, &destination);
+		SDL_BlitSurface(backup, nullptr, screen, &destination);
 		// Set the transparency
 		//SDL_SetAlpha(image, SDL_SRCALPHA | SDL_RLEACCEL, alpha);
 		// Draw the alpha image
-		SDL_BlitSurface(image, NULL, screen, &destination);
+		SDL_BlitSurface(image, nullptr, screen, &destination);
 		// Update the surface
 		//SDL_UpdateRect(screen, destination.x, destination.y, destination.w, destination.h);
 		
@@ -73,11 +73,11 @@ bool SurfaceUtil::fadeOut(Surface * surface, Surface * parent, const Point & to)
 			
 	for(int alpha = SDL_ALPHA_OPAQUE; alpha > SDL_ALPHA_TRANSPARENT && quit == false; alpha--) {
 		// Draw the background surface
-		SDL_BlitSurface(backup, NULL, screen, &destination);
+		SDL_BlitSurface(backup, nullptr, screen, &destination);
 		// Set the transparency
 		//SDL_SetAlpha(image, SDL_SRCALPHA | SDL_RLEACCEL, alpha);
 		// Draw the alpha image
-		SDL_BlitSurface(image, NULL, screen, &destination);
+		SDL_BlitSurface(image, nullptr, screen, &destination);
 		// Update the surface
 		//SDL_UpdateRect(screen, destination.x, destination.y, destination.w, destination.h);
 		

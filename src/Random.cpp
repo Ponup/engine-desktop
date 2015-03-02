@@ -22,7 +22,7 @@ int Random::nextInt(int min, int max) {
 int* Random::nextArray(vector<int> list, unsigned int limit) {
 	int* result = new int[limit];
 
-	srand(time(NULL));
+	srand(time(nullptr));
 	random_shuffle(list.begin(), list.end());
 
 	for (unsigned int i = 0; i < limit; i++) {
@@ -35,7 +35,7 @@ int* Random::nextArray(vector<int> list, unsigned int limit) {
 int* Random::nextArray(int* list, int size, unsigned int limit) {
 	int* result = new int[limit];
 
-	srand(time(NULL));
+	srand(time(nullptr));
 	random_shuffle(list, list + size);
 
 	for (unsigned int i = 0; i < limit; i++) {
@@ -48,7 +48,7 @@ int* Random::nextArray(int* list, int size, unsigned int limit) {
 vector<int> Random::nextVector(vector<int> list, unsigned int limit) {
 	vector<int> result(limit);
 
-	srand(time(NULL));
+	srand(time(nullptr));
 	random_shuffle(list.begin(), list.end());
 
 	for (unsigned int i = 0; i < limit; i++) {
@@ -57,3 +57,4 @@ vector<int> Random::nextVector(vector<int> list, unsigned int limit) {
 
 	return result;
 }
+

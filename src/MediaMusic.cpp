@@ -1,11 +1,12 @@
 #include "MediaMusic.h"
 
-#include <stdio.h>
+#include <stdexcept>
+using std::runtime_error;
 
 MediaMusic::MediaMusic(const char *name) {
 	music = Mix_LoadMUS(name);
 	if (!music) {
-		fprintf(stderr, "%s\n", Mix_GetError());
+		throw runtime_error( Mix_GetError() );
 	}
 }
 
@@ -18,9 +19,9 @@ MediaMusic::~MediaMusic() {
 }
 
 void MediaMusic::play(int loops) {
-	if (music != NULL) {
+	if (music != nullptr) {
 		if (Mix_PlayMusic(music, loops) == -1) {
-			fprintf(stderr, "%s\n", Mix_GetError());
+			throw runtime_error( Mix_GetError() );
 		}
 	}
 }
@@ -33,13 +34,13 @@ void MediaMusic::stop() {
 
 void MediaMusic::fadeIn(int seconds, int loops) {
 	if (Mix_FadeInMusic(music, loops, seconds*1000) == -1) {
-		fprintf(stderr, "%s\n", Mix_GetError());
+		throw runtime_error( Mix_GetError() );
 	}
 }
 
 void MediaMusic::fadeOut(int seconds) {
 	if (Mix_FadeOutMusic(seconds*1000) == 0) {
-		fprintf(stderr, "%s\n", Mix_GetError());
+		throw runtime_error( Mix_GetError() );
 	}
 }
 

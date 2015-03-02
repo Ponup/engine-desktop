@@ -19,7 +19,7 @@ Database &Database::getInstance() {
 }
 
 Database::Database() {
-	db = NULL;
+	db = nullptr;
 }
 
 Database::Database(const char *dbName) {
@@ -34,8 +34,8 @@ Database::Database(const Database &dataBase) {
 }
 
 Database::~Database() {
-	if(db) {
-		//sqlite3_close(db);
+	if(db != nullptr ) {
+		sqlite3_close(db);
 	}
 }
 
@@ -52,9 +52,9 @@ void Database::update(const char *sql, ...) {
 	va_end(params);
 
 	char *errorMessage;
-	int rc = sqlite3_exec(db, query, NULL, NULL, &errorMessage);
+	int rc = sqlite3_exec(db, query, nullptr, nullptr, &errorMessage);
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "Database::execute error: %s\n", errorMessage);
+		throw runtime_error( errorMessage );
 	}
 }
 
@@ -67,7 +67,7 @@ ResultSet &Database::execute(const char *sql, ...) throw(runtime_error) {
 	vsprintf(query, sql, params);
 	va_end(params);
 
-	char **result = NULL;
+	char **result = nullptr;
 	int rowsNum, colsNum;
 	char *errorMessage = (char *)malloc(sizeof(char) * 100);
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#define LINE_SIZE 256
-
 #include <utility>
 using std::pair;
 
@@ -19,19 +17,19 @@ private:
 	
 	StringsMap properties;
 
-	const char *fileName;
+	string fileName;
 
 public:
 	Properties();
 	virtual ~Properties();
 				
-	void load(const char *fileName);
-	void save(const char *fileName = NULL);
+	void load( const string& fileName);
+	void save( const string* fileName = nullptr );
 	
-	const char *getProperty(const char *propertyName) const;
-	void setProperty(const string propertyName, string propertyValue);
+	string getProperty( const string& propertyName ) const;
+	void setProperty( const string& propertyName, const string& propertyValue );
 	
-	bool getBoolProperty(const char *propertyName) const;
-	void setBoolProperty(const string propertyName, bool propertyValue);
+	bool getBoolProperty( const string& propertyName ) const;
+	void setBoolProperty( const string& propertyName, bool propertyValue );
 };
 

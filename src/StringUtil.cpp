@@ -17,17 +17,6 @@ char* StringUtil::trim(char *string) {
 	return newString;
 }
 
-char *StringUtil::strndup(const char *source, size_t len) {
-	char *duplicate = (char *)malloc(sizeof(char) * len + 1);
-	if(!duplicate)
-		return NULL;
-
-	strncpy(duplicate, source, len);
-	duplicate[len] = '\0';
-
-	return duplicate;
-}
-
 void StringUtil::tokenize(const string & str, vector<string> & tokens, const char *delim = " ") {
 	// Skip delimiters at beginning.
 	string::size_type lastPos = str.find_first_not_of(delim, 0);

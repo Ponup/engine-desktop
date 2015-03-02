@@ -4,16 +4,19 @@
 
 #include "StringUtil.h"
 
+#include <stdexcept>
+using std::runtime_error;
+
 Text::Text() {
 	alpha = SDL_ALPHA_OPAQUE;
 }
 
-Text::Text(string text) {
+Text::Text( const string& text ) {
 	this->text = text;
 	alpha = SDL_ALPHA_OPAQUE;
 }
 
-Text::Text(string text, Font *font) {
+Text::Text( const string& text, Font *font) {
 	this->text = text;
 	this->font = font;
 	alpha = SDL_ALPHA_OPAQUE;
@@ -22,7 +25,7 @@ Text::Text(string text, Font *font) {
 Text::~Text() {
 }
 
-void Text::setText(string text) {
+void Text::setText( const string& text ) {
 	this->text = text;
 }
 
@@ -41,7 +44,7 @@ Font *Text::getFont() const {
 Dimension Text::getDimension() const {
 	int width, height;
 	if (TTF_SizeText(font->toSDL(), text.c_str(), &width, &height)) {
-		fprintf(stderr, "%s\n", TTF_GetError());
+		throw runtime_error( TTF_GetError() );
 	}
 
 	return Dimension(width, height);
@@ -52,7 +55,7 @@ void Text::setAlpha(int alpha) {
 }
 
 void Text::draw( const Point &point, Surface *surface ) {
-	SDL_Surface *fontSurface= NULL;
+	SDL_Surface *fontSurface= nullptr;
 	Color color = font->getColor();
 	switch (font->getStyle()) {
 	case BLENDED:
@@ -74,7 +77,7 @@ void Text::draw( const Point &point, Surface *surface ) {
 	if(fontSurface) {
 		//SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
 		SDL_Rect dstRect = { point.x, point.y, 0, 0 };
-		SDL_BlitSurface(fontSurface, NULL, surface->toSDL(), &dstRect);
+		SDL_BlitSurface(fontSurface, nullptr, surface->toSDL(), &dstRect);
 		SDL_FreeSurface(fontSurface);
 	}
 }
@@ -96,7 +99,7 @@ void Text::drawLines(const Point &point, const Dimension &dimension,
 	for (unsigned int i = 0; i < tokens.size(); i++) {
 		testLine += tokens.at(i) + " ";
 		if (TTF_SizeText(font->toSDL(), testLine.c_str(), &width, &height)) {
-			fprintf(stderr, "%s\n", TTF_GetError());
+			throw runtime_error( TTF_GetError() );
 		}
 		if ((unsigned)width < dimension.w) {
 			finalLine = testLine;
@@ -118,7 +121,7 @@ void Text::drawLines(const Point &point, const Dimension &dimension,
 	}
 }
 
-void Text::drawString(string text, const Point &point, Font *font,
+void Text::drawString( const string& text, const Point &point, Font *font,
 		Surface *surface) {
 	Text t(text, font);
 	t.draw(point, surface);

@@ -1,13 +1,16 @@
 #include "Properties.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <fstream>
+using std::ifstream;
+using std::ofstream;
+
+#include <iostream>
+using std::ios;
+
+using std::endl;
 
 #include <stdexcept>
 using std::runtime_error;
-
-#include "StringUtil.h"
 
 Properties::Properties() {
 }
@@ -15,92 +18,82 @@ Properties::Properties() {
 Properties::~Properties() {
 }
 
-void Properties::load(const char *fileName) {
+void Properties::load( const string& fileName ) {
+
 	this->fileName = fileName;
 
-	FILE *file = fopen(fileName, "r");	
-	if(!file) {
-		char msg[100];
-		memset(msg, '\0', 100);
-		sprintf(msg, "File '%s' not found.", fileName);
-		throw runtime_error(msg);
-	}
-	
 	properties.clear();
 
-	char *lineFile = (char *)malloc(sizeof(char) * 121);
-	memset(lineFile, '\0', 121);
-
-	while((lineFile = fgets(lineFile, 121, file)) != NULL) {
-		char *line = StringUtil::trim(lineFile);
-		if(strlen(line) == 0) continue;
-		if(line[0] == '#') continue;
-
-		char *pos = strchr(line, '=');
-		if(!pos)
+	ifstream inputStream( fileName );
+	string line;
+	while( std::getline( inputStream, line ) )
+	{
+		if( line.size() == 0 || line[0] == '#' )
+		{
 			continue;
+		}	
 
-		int position = (pos - line);
+		size_t equalPos = line.find( '=' );
+		if( string::npos == equalPos )
+		{
+			continue;
+		}
 
-		char *key = StringUtil::strndup(line, position);
-		char *value = StringUtil::strndup(line + position + 1, strlen(line) - position);
+		string key = line.substr( 0, equalPos );
+		string value = line.substr( equalPos + 1 );
 
-		properties.insert(KeyValue(key, value));
-		free(line);
-		memset(lineFile, '\0', 121);
+		properties.insert( KeyValue( key, value ) );
 	}
-
-	free(lineFile);
-	fclose(file);
+	inputStream.close();
 }
 
-void Properties::save(const char *fileName) {
-	if(!fileName) fileName = this->fileName;
+void Properties::save( const string* fileName ) {
+	string outputFilename = this->fileName;
+	if( nullptr != fileName )
+	{
+		outputFilename = *fileName;
+	}
 
-	FILE *file = fopen(fileName, "w+");
-	if(!file)
+	ofstream outputStream( outputFilename, ios::out | ios::trunc );
+	if( !outputStream.is_open() )
+	{
 		return;
-
-	size_t charSize = sizeof(char);
+	}
 
 	StringsMap::const_iterator it;
 	for(it = properties.begin(); it != properties.end(); it++) {
-		const char *key = it->first.c_str();
-		const char *value = it->second.c_str();
+		string key = it->first;
+		string value = it->second;
 
-		fwrite(key, charSize, strlen(key), file);
-		fwrite("=", charSize, 1, file);
-		fwrite(value, charSize, strlen(value), file);
-		fwrite("\n", charSize, 1, file);
+		outputStream << key << "=" << value << endl;
 	}
-	
-	fclose(file);
+	outputStream.close();
 }
 
-const char *Properties::getProperty(const char *propertyName) const {
+string Properties::getProperty( const string& propertyName ) const {
 	StringsMap::const_iterator it;
 	it = properties.find(propertyName);
 	if(it == properties.end()) {
-		return NULL;
+		return nullptr;
 	} else {
-		return it->second.c_str();
+		return it->second;
 	}
 }
 
-void Properties::setProperty(string propertyName, string propertyValue) {
+void Properties::setProperty( const string& propertyName, const string& propertyValue ) {
 	StringsMap::const_iterator it;
-	it = properties.find(propertyName);
-	properties.erase(it->first);
-	properties.insert(KeyValue(propertyName, propertyValue));
+	it = properties.find( propertyName );
+	properties.erase( it->first );
+	properties.insert( KeyValue( propertyName, propertyValue ) );
 }
 
-bool Properties::getBoolProperty(const char * propertyName) const {
-	const char *p = getProperty(propertyName);
+bool Properties::getBoolProperty( const string& propertyName ) const {
+	string p = getProperty( propertyName );
 	
-	return strncmp(p, "True", 4) == 0;
+	return ( "True" == p );
 }
 
-void Properties::setBoolProperty(string propertyName, bool propertyValue) {
-	setProperty(propertyName, (propertyValue ? string("True") : string("False")));
+void Properties::setBoolProperty( const string& propertyName, bool propertyValue ) {
+	setProperty( propertyName, ( propertyValue ? string("True") : string("False") ) );
 }
 
