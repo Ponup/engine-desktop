@@ -50,9 +50,10 @@ void Window::drawSurface(Surface * image, const Point &point) {
 	SDL_RenderCopy( renderer, texture, NULL, NULL);
 	SDL_DestroyTexture(texture);
 }
+
 void Window::toggleFullScreen() {
 	fullScreen = !fullScreen;
-	defineSurface();
+	SDL_SetWindowFullscreen(window, fullScreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 }
 
 void Window::defineSurface() {

@@ -11,6 +11,7 @@ using std::runtime_error;
 #include "Window.h"
 
 Surface::Surface() {
+	surface = nullptr;
 }
 
 Surface::Surface(SDL_Surface *surface) {
@@ -41,7 +42,7 @@ void Surface::load(const char *path, bool hasAlphaChannel) {
 }
 
 Surface::~Surface() {
-	if (surface) {
+	if (surface != nullptr) {
 		SDL_FreeSurface(surface);
 		surface = nullptr;
 	}

@@ -49,11 +49,10 @@ bool MediaMusic::isPlaying() const {
 
 bool MediaMusic::isFading() const {
 	switch (Mix_FadingMusic()) {
-	case MIX_NO_FADING:
-		return false;
 	case MIX_FADING_OUT:
 	case MIX_FADING_IN:
 		return true;
+	case MIX_NO_FADING:
 	default:
 		return false;
 	}
