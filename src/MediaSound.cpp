@@ -7,7 +7,7 @@ using std::runtime_error;
 #include <SDL.h>
 
 MediaSound::MediaSound() {
-	sound = NULL;
+	sound = nullptr;
 }
 
 MediaSound::MediaSound(const char *name) {

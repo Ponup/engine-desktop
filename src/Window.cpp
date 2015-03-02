@@ -30,6 +30,9 @@ void Window::drawSurface(Surface * image, const Point &point) {
 	if( NULL == image)
 		return;
 	SDL_Surface* imageSurf = image->toSDL();
+	if (imageSurf == nullptr) {
+		return;
+	}
 
 	SDL_Rect rectDst = { point.x, point.y, 0, 0 };
 	SDL_Rect rectSrc;
@@ -38,7 +41,7 @@ void Window::drawSurface(Surface * image, const Point &point) {
 	rectSrc.w = imageSurf->w;
 	rectSrc.h = imageSurf->h;
 
-	SDL_BlitSurface(imageSurf, &rectSrc, surface, &rectDst);
+	//SDL_BlitSurface(imageSurf, &rectSrc, surface, &rectDst);
 
 	SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, imageSurf );
 

@@ -18,7 +18,8 @@ Surface::Surface(SDL_Surface *surface) {
 	{
 		throw std::runtime_error( "surface is null" );
 	}
-	this->surface = SDL_ConvertSurface(surface, surface->format, SDL_SWSURFACE);
+	SDL_Surface *convertedSurface = SDL_ConvertSurface(surface, surface->format, SDL_SWSURFACE);
+	this->surface = (nullptr == convertedSurface ? surface : convertedSurface); 
 }
 
 Surface::Surface(Surface *surface, const Dimension &dimension) {
@@ -42,7 +43,7 @@ void Surface::load(const char *path, bool hasAlphaChannel) {
 Surface::~Surface() {
 	if (surface) {
 		SDL_FreeSurface(surface);
-		surface = NULL;
+		surface = nullptr;
 	}
 }
 
