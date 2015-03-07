@@ -94,6 +94,6 @@ bool Properties::getBoolProperty( const string& propertyName ) const {
 }
 
 void Properties::setBoolProperty( const string& propertyName, bool propertyValue ) {
-	setProperty( propertyName, ( propertyValue ? string("True") : string("False") ) );
+	setProperty( propertyName, ( propertyValue ? "True" : "False" ) );
 }
 

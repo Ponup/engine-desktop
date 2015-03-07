@@ -17,7 +17,7 @@ char* StringUtil::trim(char *string) {
 	return newString;
 }
 
-void StringUtil::tokenize(const string & str, vector<string> & tokens, const char *delim = " ") {
+void StringUtil::tokenize(const string &str, vector<string> &tokens, const char *delim = " ") {
 	// Skip delimiters at beginning.
 	string::size_type lastPos = str.find_first_not_of(delim, 0);
 	// Find first "non-delimiter".

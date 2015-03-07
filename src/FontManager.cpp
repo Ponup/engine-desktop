@@ -3,23 +3,17 @@
 FontMap FontManager::fontMap = FontMap();
 
 Font* FontManager::getFont( const string& name, unsigned int size ) {
-	char temp[100];
-	memset(temp, '\0', 100);
-	sprintf(temp, "%s_%d", name.c_str(), size);
-	string fontKey(temp);
+	string fontKey = name + "_" + std::to_string( size );
 
-	FontMap::iterator it;
-	it = fontMap.find(temp);
-
+	FontMap::iterator it = fontMap.find( fontKey.c_str() );
 	if(it != fontMap.end()) {
 		return (*it).second;
 	}
 
-	memset(temp, '\0', 100);
-	sprintf(temp, "resources/fonts/%s.ttf", name.c_str() );
-	Font *font = new Font(temp, size);
+	string fontPath = "resources/fonts/" + name + ".ttf";
+	Font *font = new Font( fontPath.c_str(), size );
 
-	fontMap.insert(FontMap::value_type(fontKey, font));
+	fontMap.insert( FontMap::value_type( fontKey, font ) );
 
 	return font;
 }

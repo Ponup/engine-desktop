@@ -35,7 +35,8 @@ Database::Database(const Database &dataBase) {
 
 Database::~Database() {
 	if(db != nullptr ) {
-		sqlite3_close(db);
+		sqlite3_close( db );
+		db = nullptr;
 	}
 }
 

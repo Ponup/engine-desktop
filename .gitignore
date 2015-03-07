@@ -5,3 +5,4 @@ libKangaroo.a
 Debug
 *.vcxproj
 *.vcxproj.filters
+CMakeCache.txt

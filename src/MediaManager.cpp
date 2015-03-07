@@ -1,5 +1,8 @@
 #include "MediaManager.h"
 
+#include <string>
+using std::string;
+
 MediaManager * MediaManager::singleton = NULL;
 map<const char *, MediaSound *> MediaManager::sounds;
 
@@ -15,9 +18,8 @@ void MediaManager::playSound(const char *name) {
 	SoundsMap::const_iterator it;
 	it = sounds.find(name);
 	if(it == sounds.end()) {
-		char path[50];
-		sprintf(path, "resources/sounds/%s", name);
-		MediaSound *mediaSound = new MediaSound(path);
+		string mediaPath = "resources/sounds/" + string( name );
+		MediaSound *mediaSound = new MediaSound( mediaPath.c_str() );
 		mediaSound->play();
 
 		sounds[name] = mediaSound;
