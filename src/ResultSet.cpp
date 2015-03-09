@@ -1,42 +1,35 @@
 #include "ResultSet.h"
 
+#include <stdexcept>
+using std::runtime_error;
+
 #include <stdio.h>
 #include <string.h>
-#include <sqlite3.h>
 
-ResultSet::ResultSet(char **data, int rowsNum, int colsNum) {
-	this->data = data;
-	this->rowsNum = rowsNum;
-	this->colsNum = colsNum;
+ResultSet::ResultSet( sqlite3 *dbHandle, const char *sql ) {
+	const char *errorMessage = nullptr;
+	int rc = sqlite3_prepare_v2(dbHandle, sql, -1, &handle, &errorMessage);
+	if (rc != SQLITE_OK) {
+		throw runtime_error(errorMessage);
+	}
 }
 
 ResultSet::~ResultSet() {
-	sqlite3_free_table(data);
-	data = nullptr;
-}
-
-int ResultSet::columnCount() const {
-	return colsNum;
-}
-
-char* ResultSet::getColumn(int index) const {
-	if (index < colsNum) {
-		return data[index];
+	if (handle != nullptr) {
+		sqlite3_finalize(handle);
+		handle = nullptr;
 	}
-	return nullptr;
 }
 
-unsigned int ResultSet::rowsCount() const {
-	return rowsNum;
+bool ResultSet::hasNext() {
+	return sqlite3_step(handle) != SQLITE_DONE;
 }
 
-const char *ResultSet::getString(int row, int column) const {
-	return data[ ( ( row + 1 ) * colsNum ) + column ];
+char *ResultSet::getString(int column) const {
+	return (char *)sqlite3_column_text(handle, column);
 }
 
-int ResultSet::getInt(int row, int column) const {
-	int result = 0;
-	sscanf( data[ ( ( row + 1 ) * colsNum ) + column ], "%d", &result );
-	return result;
+int ResultSet::getInt(int column) const {
+	return sqlite3_column_int(handle, column);
 }
 

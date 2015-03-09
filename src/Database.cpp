@@ -5,78 +5,56 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include <stdexcept>
-using std::runtime_error;
+namespace Kangaroo {
 
-Database Database::database;
-
-void Database::init(const char *dbName) {
-	database = Database(dbName);
-}
-
-Database &Database::getInstance() {	
-	return database;
-}
-
-Database::Database() {
-	db = nullptr;
-}
-
-Database::Database(const char *dbName) {
-	sqlite3_open(dbName, &db);
-	if(sqlite3_errcode(db) != SQLITE_OK) {
-		throw std::runtime_error(sqlite3_errmsg(db));
-	}
-}
-
-Database::Database(const Database &dataBase) {
-	this->db = dataBase.toSQLite();
-}
-
-Database::~Database() {
-	if(db != nullptr ) {
-		sqlite3_close( db );
-		db = nullptr;
-	}
-}
-
-sqlite3 *Database::toSQLite() const {
-	return db;
-}
-
-void Database::update(const char *sql, ...) {
-	char query[100];
-
-	va_list params;
-	va_start(params, sql);
-	vsprintf(query, sql, params);
-	va_end(params);
-
-	char *errorMessage;
-	int rc = sqlite3_exec(db, query, nullptr, nullptr, &errorMessage);
-	if (rc != SQLITE_OK) {
-		throw runtime_error( errorMessage );
-	}
-}
-
-ResultSet &Database::execute(const char *sql, ...) throw(runtime_error) {
-	char query[512];
-	memset(query, '\0', 512);
-
-	va_list params;
-	va_start(params, sql);
-	vsprintf(query, sql, params);
-	va_end(params);
-
-	char **result = nullptr;
-	int rowsNum, colsNum;
-	char *errorMessage = (char *)malloc(sizeof(char) * 100);
-
-	int rc = sqlite3_get_table(db, query, &result, &rowsNum, &colsNum, &errorMessage);
-	if (rc != SQLITE_OK) {
-		throw runtime_error(errorMessage);
+	Database& Database::getInstance() {
+		static Database database;
+		return database;
 	}
 
-	ResultSet *rs = new ResultSet(result, rowsNum, colsNum);
-	return *rs;
+	Database::Database() {
+		handle = nullptr;
+	}
+
+	Database::~Database() {
+		if (handle != nullptr) {
+			sqlite3_close(handle);
+			handle = nullptr;
+		}
+	}
+
+	void Database::init(const char *dbName) throw( runtime_error ) {
+		int rc = sqlite3_open(dbName, &handle);
+		if (rc != SQLITE_OK) {
+			throw runtime_error(sqlite3_errmsg(handle));
+		}
+	}
+
+	void Database::update(const char *sql, ...) {
+		char query[0x100];
+
+		va_list params;
+		va_start(params, sql);
+		vsprintf(query, sql, params);
+		va_end(params);
+
+		char *errorMessage = nullptr;
+		int rc = sqlite3_exec(handle, query, nullptr, nullptr, &errorMessage);
+		if (rc != SQLITE_OK) {
+			throw runtime_error(errorMessage);
+		}
+	}
+
+	ResultSet& Database::execute(const char *sql, ...) throw(runtime_error) {
+		char query[0x400];
+		memset(query, '\0', 0x400);
+
+		va_list params;
+		va_start(params, sql);
+		vsprintf(query, sql, params);
+		va_end(params);
+
+		ResultSet *rs = new ResultSet(handle, query);
+		return *rs;
+	}
 }

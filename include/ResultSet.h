@@ -1,20 +1,18 @@
 #pragma once
 
+#include <sqlite3.h>
+
 class ResultSet {
 	
 private:
-	char **data;
-	int rowsNum;
-	int colsNum;
+	sqlite3_stmt *handle;
 
 public:
-	ResultSet(char ** data, int rowsNum, int colsNum);
+	ResultSet( sqlite3 *dbHandle, const char *sql );
 	~ResultSet();
 	
-	int columnCount() const;
-	char *getColumn(int index) const;
-	unsigned int rowsCount() const;
-	const char *getString(int row, int column) const;
-	int getInt(int row, int column) const;
+	bool hasNext();
+	char *getString(int column) const;
+	int getInt(int column) const;
 };
 

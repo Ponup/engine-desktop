@@ -6,3 +6,9 @@ Debug
 *.vcxproj
 *.vcxproj.filters
 CMakeCache.txt
+Kangaroo.dir
+Project.sdf
+Project.sln
+Project.v12.suo
+
+Release/

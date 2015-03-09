@@ -7,24 +7,25 @@ using std::runtime_error;
 
 #include "ResultSet.h"
 
-class Database {
-	
-private:
-	static Database database;
-	
-	sqlite3 *db;
+namespace Kangaroo {
 
-public:
-	Database();
-	Database(const char *dbName);
-	Database(const Database &dataBase);
-	~Database();
+	class Database {
 
-	static void init(const char *dbName);
-	static Database &getInstance();
+	private:
+		sqlite3 *handle;
 
-	void update(const char *sql, ...);
-	ResultSet &execute(const char *sql, ...) throw(runtime_error);
-	sqlite3 *toSQLite() const;
-};
+		Database();
 
+	public:
+		static Database& getInstance();
+
+		Database(const Database &) = delete;
+		Database& operator=(const Database &) = delete;
+		~Database();
+
+		void init(const char *dbName) throw( runtime_error );
+
+		void update(const char *sql, ...) throw( runtime_error );
+		ResultSet& execute(const char *sql, ...) throw(runtime_error);
+	};
+}
