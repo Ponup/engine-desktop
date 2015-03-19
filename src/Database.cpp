@@ -30,7 +30,7 @@ namespace Kangaroo {
 		}
 	}
 
-	void Database::update(const char *sql, ...) {
+	void Database::update(const char *sql, ...) throw( runtime_error ) {
 		char query[0x100];
 
 		va_list params;

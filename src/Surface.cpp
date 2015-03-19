@@ -29,12 +29,12 @@ Surface::Surface(Surface *surface, const Dimension &dimension) {
 			dimension.h, (x)->format->BitsPerPixel, (x)->format->Rmask, (x)->format->Gmask, (x)->format->Bmask, (x)->format->Amask);
 }
 
-Surface::Surface(const char *path, bool hasAlphaChannel) {
-	load(path, hasAlphaChannel);
+Surface::Surface( const string& path, bool hasAlphaChannel ) {
+	load( path, hasAlphaChannel );
 }
 
-void Surface::load(const char *path, bool hasAlphaChannel) {
-	SDL_Surface *normal = IMG_Load(path);
+void Surface::load( const string& path, bool hasAlphaChannel ) {
+	SDL_Surface *normal = IMG_Load( path.c_str() );
 	if ( nullptr == normal)
 		throw runtime_error(IMG_GetError());
 			
