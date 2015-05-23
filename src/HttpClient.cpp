@@ -26,6 +26,7 @@ void HttpClient::get( string *data ) {
 	curl_easy_setopt( curl, CURLOPT_URL, url.c_str() );
 	curl_easy_setopt( curl, CURLOPT_WRITEFUNCTION, &HttpClient::writeCallback );
 	curl_easy_setopt( curl, CURLOPT_WRITEDATA, data );
+	curl_easy_setopt( curl, CURLOPT_TIMEOUT, 6 );
 	curl_easy_setopt( curl, CURLOPT_VERBOSE, 0 );
 
 	curl_easy_perform( curl );
@@ -42,6 +43,7 @@ void HttpClient::post( const string &params ) {
 
 	curl_easy_setopt( curl, CURLOPT_URL, url.c_str() );
 	curl_easy_setopt( curl, CURLOPT_POSTFIELDS, params.c_str() );
+	curl_easy_setopt( curl, CURLOPT_TIMEOUT, 3 );
 	curl_easy_setopt( curl, CURLOPT_VERBOSE, 0 );
 
 	curl_easy_perform( curl );
