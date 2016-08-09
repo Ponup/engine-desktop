@@ -12,41 +12,42 @@ using std::string;
  * 
  * @see Surface
  */
-class Window  {
-
+class Window {
 private:
-	string title;
-	string iconPath;
-	unsigned int width;
-	unsigned int height;
-	bool fullScreen;
+    string title;
+    string iconPath;
+    unsigned int width;
+    unsigned int height;
+    bool fullScreen;
 
-	SDL_Surface* surface;
-	SDL_Window* window;
+    SDL_Surface* surface;
+    SDL_Window* window;
 
-	void defineSurface();
-
-public:
-	static SDL_Renderer* renderer;
-	static SDL_Texture* texture;
-
+    void defineSurface();
 
 public:
-	const static int FLAGS_WINDOW;
-	const static int FLAGS_FULLSCREEN;
+    static SDL_Renderer* renderer;
+    static SDL_Texture* texture;
 
-	Window( const string& title, unsigned int width, unsigned int height );
-	Window( const string& title, unsigned int width, unsigned int height, const string& iconPath, bool fullScreen );
-	~Window();
 
-	void drawSurface( Surface* image, const Point &point = Point::Origin );
-	Dimension getDimension() const;
-	SDL_Window* toSDL();
-	void flip();
+public:
+    const static int FLAGS_WINDOW;
+    const static int FLAGS_FULLSCREEN;
 
-	/**
-	 * Switch between windowed and fullscreen modes.
-	 */
-	void toggleFullScreen();
+    Window(const string& title, unsigned int width, unsigned int height);
+    Window(const string& title, unsigned int width, unsigned int height,
+            const string& iconPath, bool fullScreen);
+    ~Window();
+
+    void drawSurface(Surface* image, const Point &point = Point::Origin);
+    Dimension getDimension() const;
+    SDL_Window* toSDL();
+    SDL_Surface* getSurface(void);
+    void flip();
+
+    /**
+     * Switch between windowed and fullscreen modes.
+     */
+    void toggleFullScreen();
 };
 
