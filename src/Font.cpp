@@ -17,7 +17,7 @@ void Font::load(const char *fontPath, unsigned int size) {
 	if(font == nullptr) {
 		throw std::runtime_error( TTF_GetError() );
 	}
-	style = BLENDED;
+	style = FontStyle::BLENDED;
 }
 
 Font::Font(const Font &font) {

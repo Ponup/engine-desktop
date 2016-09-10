@@ -58,14 +58,14 @@ void Text::draw( const Point &point, Surface *surface ) {
 	SDL_Surface *fontSurface= nullptr;
 	Color color = font->getColor();
 	switch (font->getStyle()) {
-	case BLENDED:
+	case FontStyle::BLENDED:
 		fontSurface
 				= TTF_RenderUTF8_Blended(font->toSDL(), text.c_str(), color );
 		break;
-	case SOLID:
+	case FontStyle::SOLID:
 		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text.c_str(), color );
 		break;
-	case SHADED:
+	case FontStyle::SHADED:
 	default: {
 		SDL_Color bgColor = { 0, 0, 0 };
 		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text.c_str(), color,
@@ -75,11 +75,34 @@ void Text::draw( const Point &point, Surface *surface ) {
 
 	// @TODO
 	if(fontSurface) {
-		//SDL_SetAlpha(fontSurface, SDL_SRCALPHA, alpha);
+		SDL_SetSurfaceAlphaMod(fontSurface, alpha);
 		SDL_Rect dstRect = { point.x, point.y, 0, 0 };
 		SDL_BlitSurface(fontSurface, nullptr, surface->toSDL(), &dstRect);
 		SDL_FreeSurface(fontSurface);
 	}
+}
+
+SDL_Surface* Text::toSDL() {
+	SDL_Surface *fontSurface = nullptr;
+	Color color = font->getColor();
+	switch (font->getStyle()) {
+	case FontStyle::BLENDED:
+		fontSurface
+			= TTF_RenderUTF8_Blended(font->toSDL(), text.c_str(), color);
+		break;
+	case FontStyle::SOLID:
+		fontSurface = TTF_RenderUTF8_Solid(font->toSDL(), text.c_str(), color);
+		break;
+	case FontStyle::SHADED:
+	default: {
+		SDL_Color bgColor = { 0, 0, 0 };
+		fontSurface = TTF_RenderUTF8_Shaded(font->toSDL(), text.c_str(), color,
+			bgColor);
+	} break;
+	}
+	SDL_SetSurfaceAlphaMod(fontSurface, alpha);
+
+	return fontSurface;
 }
 
 void Text::drawLines(const Point &point, const Dimension &dimension,

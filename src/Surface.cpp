@@ -84,6 +84,11 @@ void Surface::drawSurface(Surface * image, const Point &point) {
 	SDL_BlitSurface(imageSurf, &rectSrc, surface, &rectDst);
 }
 
+void Surface::drawTexture(Texture* texture, const Point& point) {
+	
+}
+
+
 void Surface::updateArea(const Point &point, const Dimension &dimension) {
 	//SDL_UpdateRect(surface, point.x, point.y, dimension.w, dimension.h);
 }

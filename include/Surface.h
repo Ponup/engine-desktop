@@ -6,6 +6,9 @@
 #include <string>
 using std::string;
 
+#include "Texture.h"
+using Kangaroo::Texture;
+
 /**
  * This class manages the logic and information of a canvas.
  */
@@ -27,7 +30,8 @@ public:
     void clean();
     void clean(const Color &color);
     void setTransparentColor(const Color &color);
-    void drawSurface(Surface* image, const Point &point = Point::Origin);
+    void drawSurface(Surface* image, const Point& point = Point::Origin);
+	void drawTexture(Texture* texture, const Point& point = Point::Origin);
 
     void updateArea(const Point &point, const Dimension &dimension);
     void updateArea(const Area &area);

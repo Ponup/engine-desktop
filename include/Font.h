@@ -4,13 +4,20 @@
 
 #include "Color.h"
 
-enum FontStyle {
+enum class FontStyle {
 	SOLID = 1,
 	SHADED = 2,
 	BLENDED = 3
 };
 
 class Font {
+
+	enum class Style {
+		Solid = 1,
+		Shaded,
+		Blended
+	};
+
 	private:
 		TTF_Font *font;
 		FontStyle style;
