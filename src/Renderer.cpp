@@ -11,7 +11,9 @@ void Kangaroo::Renderer::drawTexture(Texture* texture, const Point& pos) {
 }
 
 void Kangaroo::Renderer::drawText(Text* text, const Point& pos) {
-	Texture texture(internal, text->toSDL());
+	SDL_Surface* surface = text->toSDL();
+	Texture texture(internal, surface);
+	SDL_FreeSurface(surface);
 	drawTexture(&texture, pos);
 }
 

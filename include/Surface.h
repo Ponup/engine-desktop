@@ -43,5 +43,6 @@ public:
 
     void setOpacity(Uint8 opacity);
     SDL_Surface *toSDL();
+	SDL_Texture* toTexture(SDL_Renderer* renderer);
 };
 

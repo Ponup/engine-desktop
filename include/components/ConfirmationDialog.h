@@ -7,8 +7,6 @@ using std::string;
 #include "Window.h"
 
 class ConfirmationDialog : public AbstractDialog {
-	
-private:
 
 	Window *screen;
 	string message;
@@ -18,6 +16,5 @@ public:
 	~ConfirmationDialog();
 
 	int showGetSelected();
-	void handleEvents(SDL_Event e);
 };
 

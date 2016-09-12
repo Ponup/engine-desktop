@@ -7,8 +7,6 @@ using std::string;
 #include "Window.h"
 
 class InformationDialog : public AbstractDialog {
-	
-private:
 
 	Window *screen;
 	string message;

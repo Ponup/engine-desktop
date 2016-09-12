@@ -14,7 +14,7 @@ void InformationDialog::show() {
 	};
 	const SDL_MessageBoxData messageboxdata = {
 		SDL_MESSAGEBOX_INFORMATION, /* .flags */
-		screen->toSDL(), /* .window */
+		NULL, /* .window */
 		"Information", /* .title */
 		message.c_str(), /* .message */
 		SDL_arraysize(buttons), /* .numbuttons */

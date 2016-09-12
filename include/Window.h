@@ -43,7 +43,6 @@ public:
     Dimension getDimension() const;
     SDL_Window* toSDL();
     SDL_Surface* getSurface(void);
-    void flip();
 
     /**
      * Switch between windowed and fullscreen modes.

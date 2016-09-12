@@ -10,33 +10,29 @@ using std::string;
 
 class Text {
 
-private:
 	string text;
 	Font *font;
-	
+
 	int alpha;
 
 public:
 	Text();
-	Text( const string& text );
-	Text( const string& text, Font *font );
+	Text(const string& text);
+	Text(const string& text, Font *font);
 	~Text();
 
-	void setText( const string& text );
+	void setText(const string& text);
 	string getText() const;
-	void setFont( Font *font );
+	void setFont(Font *font);
 	Font *getFont() const;
 	Dimension getDimension() const;
 
-	void setAlpha( int alpha );
+	void setAlpha(int alpha);
 
 	SDL_Surface* toSDL();
-	
-	void draw( const Point &point, Surface *surface);
-	void drawLines( const Point &point, const Dimension &dimension,
-			Surface *surface);
 
-	static void drawString( const string& text, const Point &point, Font *font,
-			Surface *surface);
+	void draw(const Point &point, Surface *surface);
+	void drawLines(const Point &point, const Dimension &dimension,
+		Surface *surface);
 };
 

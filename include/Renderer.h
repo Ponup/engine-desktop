@@ -12,9 +12,11 @@ namespace Kangaroo {
 
 	class Renderer {
 
+	public:
+		int width, height;
+
 		SDL_Renderer* internal;
 
-	public:
 		Renderer(SDL_Renderer* renderer);
 
 		void drawTexture(Texture* texture, const Point& pos = Point::Origin);

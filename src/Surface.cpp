@@ -130,3 +130,7 @@ void Surface::transform(double angle, double zoom, int smooth) {
 SDL_Surface *Surface::toSDL() {
 	return surface;
 }
+
+SDL_Texture* Surface::toTexture(SDL_Renderer* renderer) {
+	return SDL_CreateTextureFromSurface(renderer, surface);
+}

@@ -87,12 +87,6 @@ Dimension Window::getDimension() const {
 	return Dimension(width, height);
 }
 
-void Window::flip() {
-	//SDL_UpdateTexture(texture, nullptr, surface->pixels, surface->pitch);
-	//SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-	SDL_RenderPresent(renderer);
-}
-
 SDL_Window* Window::toSDL() {
 	return window;
 }
@@ -100,3 +94,5 @@ SDL_Window* Window::toSDL() {
 SDL_Surface* Window::getSurface(void) {
 	return SDL_GetWindowSurface(window);
 }
+
+//SDL_UpdateWindowSurface

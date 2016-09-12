@@ -15,9 +15,15 @@ namespace Kangaroo {
 		void init();
 
 	public:
+		Texture(SDL_Renderer* renderer, int width, int height);
 		Texture(SDL_Renderer* renderer, const string& path);
 		Texture(SDL_Renderer* renderer, SDL_Surface* surface);
+		~Texture();
+
 		SDL_Texture* getInternal();
+
+		void selectAsRenderingTarget(SDL_Renderer* renderer);
+		void unselectAsRenderingTarget(SDL_Renderer* renderer);
 
 		int getWidth() const;
 		int getHeight() const;
