@@ -39,7 +39,6 @@ public:
             const string& iconPath, bool fullScreen);
     ~Window();
 
-    void drawSurface(Surface* image, const Point &point = Point::Origin);
     Dimension getDimension() const;
     SDL_Window* toSDL();
     SDL_Surface* getSurface(void);

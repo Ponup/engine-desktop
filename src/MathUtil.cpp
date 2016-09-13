@@ -41,7 +41,7 @@ vector<Point> MathUtil::calculatePath(const Point &a, const Point &b) {
 		
 		if( x != 0 || y != 0 )
 		{
-			Point point( x, y );
+			Point point(x, y);
 			points.push_back( point );
 		}
 	}

@@ -30,9 +30,5 @@ public:
 	void setAlpha(int alpha);
 
 	SDL_Surface* toSDL();
-
-	void draw(const Point &point, Surface *surface);
-	void drawLines(const Point &point, const Dimension &dimension,
-		Surface *surface);
 };
 

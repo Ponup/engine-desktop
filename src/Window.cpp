@@ -21,35 +21,7 @@ title(title_), iconPath(iconPath_), width(width_), height(height_), fullScreen(f
 }
 
 Window::~Window() {
-	//	if( nullptr != texture )
-	//		SDL_DestroyTexture( texture );
 	SDL_DestroyWindow(window);
-}
-
-void Window::drawSurface(Surface * image, const Point &point) {
-	if (nullptr == image)
-		return;
-
-	SDL_Surface* imageSurf = image->toSDL();
-	if (imageSurf == nullptr) {
-		return;
-	}
-
-	//SDL_Rect rectDst = { point.x, point.y, 0, 0 };
-	SDL_Rect rectSrc;
-
-	rectSrc.x = rectSrc.y = 0;
-	rectSrc.w = imageSurf->w;
-	rectSrc.h = imageSurf->h;
-
-	//SDL_BlitSurface(imageSurf, &rectSrc, surface, &rectDst);
-
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, imageSurf);
-
-	//	SDL_RenderClear( renderer );
-	//SDL_RenderCopy( renderer, texture, &rectSrc, &rectDst);
-	SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-	SDL_DestroyTexture(texture);
 }
 
 void Window::toggleFullScreen() {

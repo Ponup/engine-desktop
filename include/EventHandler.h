@@ -4,7 +4,6 @@
 
 class EventHandler {
 	
-private:
 	SDL_Event event;
 
 public:

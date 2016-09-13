@@ -54,6 +54,7 @@ void Text::setAlpha(int alpha) {
 	this->alpha = alpha;
 }
 
+/*
 void Text::draw(const Point &point, Surface *surface) {
 	SDL_Surface *fontSurface = nullptr;
 	Color color = font->getColor();
@@ -81,6 +82,7 @@ void Text::draw(const Point &point, Surface *surface) {
 		SDL_FreeSurface(fontSurface);
 	}
 }
+*/
 
 SDL_Surface* Text::toSDL() {
 	SDL_Surface *fontSurface = nullptr;
@@ -103,45 +105,5 @@ SDL_Surface* Text::toSDL() {
 	SDL_SetSurfaceAlphaMod(fontSurface, alpha);
 
 	return fontSurface;
-}
-
-void Text::drawLines(const Point &point, const Dimension &dimension,
-	Surface *surface) {
-	Point np = point;
-	vector<string> tokens;
-	StringUtil::tokenize(text, tokens, " ");
-	const int lineSkip = TTF_FontLineSkip(font->toSDL());
-
-	string testLine;
-	string finalLine;
-	Text * newText = new Text();
-	newText->setFont(font);
-	int width, height;
-	//	while(!tokens.empty()) {
-	bool left = true;
-	for (unsigned int i = 0; i < tokens.size(); i++) {
-		testLine += tokens.at(i) + " ";
-		if (TTF_SizeText(font->toSDL(), testLine.c_str(), &width, &height)) {
-			throw runtime_error(TTF_GetError());
-		}
-		if ((unsigned)width < dimension.w) {
-			finalLine = testLine;
-			left = true;
-		}
-		else { // every time we reach the final, move the point
-			left = false;
-			newText->setText(finalLine.c_str());
-			newText->draw(np, surface);
-			testLine.clear();
-			testLine = tokens.at(i) + " ";
-
-			np.x = np.x;
-			np.y = np.y + lineSkip;
-		}
-	}
-	if (left) {
-		newText->setText(finalLine.c_str());
-		newText->draw(np, surface);
-	}
 }
 
