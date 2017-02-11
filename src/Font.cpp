@@ -2,20 +2,25 @@
 
 #include <stdexcept>
 
+using std::const_pointer_cast;
+
 Font::Font() {
 }
 
-Font::Font(const char *fontPath, unsigned int size) {
+Font::Font(const char *fontPath, unsigned int size) :
+	path(fontPath),
+	size(size) {
 	load(fontPath, size);
 }
 
 void Font::load(const char *fontPath, unsigned int size) {
-	this->path = fontPath;
-	this->size = size;
+	internal = shared_ptr<TTF_Font>(TTF_OpenFont(fontPath, size), [](TTF_Font* font) {
+		if (font)
+			TTF_CloseFont(font);
+	});
 
-	font = TTF_OpenFont(fontPath, size);
-	if(font == nullptr) {
-		throw std::runtime_error( TTF_GetError() );
+	if (!internal) {
+		throw std::runtime_error(TTF_GetError());
 	}
 	style = FontStyle::BLENDED;
 }
@@ -28,10 +33,6 @@ Font::Font(const Font &font) {
 }
 
 Font::~Font() {
-	if(font != nullptr) {
-		TTF_CloseFont(font);
-		font = nullptr;
-	}
 }
 
 const char *Font::getPath() const {
@@ -47,7 +48,7 @@ void Font::setStyle(FontStyle style) {
 }
 
 FontStyle Font::getStyle() const {
-	return style;	
+	return style;
 }
 
 void Font::setColor(const Color &color) {
@@ -59,10 +60,10 @@ Color Font::getColor() const {
 }
 
 unsigned int Font::getLineSkip() const {
+	TTF_Font* font = internal.get();
 	return TTF_FontLineSkip(font);
 }
 
 TTF_Font *Font::toSDL() {
-	return font;	
+	return internal.get();
 }
-

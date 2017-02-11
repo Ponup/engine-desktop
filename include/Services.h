@@ -7,16 +7,14 @@ using std::vector;
 
 namespace Kangaroo {
 
-class Services {
+	class Services {
 
-private:
-	vector<Service*> services;
-	
-public:
-	void addService( Service* service );
-	void init();
-	void destroy();	
-};
+		vector<Service*> services;
+
+	public:
+		void addService(Service* service);
+		void init();
+		void destroy();
+	};
 
 }
-

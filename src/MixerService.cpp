@@ -11,9 +11,9 @@ MixerService::MixerService(int frequency_, int channels_) : frequency(frequency_
 }
 
 void MixerService::init() {
-	if(Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, 2048) == -1) {
-		throw std::runtime_error( Mix_GetError() );
-	}	
+	if (Mix_OpenAudio(frequency, MIX_DEFAULT_FORMAT, channels, 2048) == -1) {
+		throw std::runtime_error(Mix_GetError());
+	}
 }
 
 void MixerService::destroy() {

@@ -15,7 +15,7 @@ class FontManager {
 	static FontMap fontMap;
 
 public:
-	static Font* getFont( const string& name, unsigned int size );
+	static Font* getFont(const string& name, unsigned int size);
 	static void destroy();
 };
 

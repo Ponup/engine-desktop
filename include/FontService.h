@@ -7,13 +7,15 @@ using std::runtime_error;
 
 /**
  * This service initializes the SDL_ttf library.
- * 
- * @see Service 
+ *
+ * @see Service
  */
 class FontService : public Service {
-	
+
+	bool initialized;
+
 public:
-	void init() throw( runtime_error );
+	void init() throw(runtime_error);
 	void destroy();
 };
 

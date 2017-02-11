@@ -3,13 +3,16 @@
 #include <SDL_ttf.h>
 
 void FontService::init() throw (std::runtime_error) {
-	if( -1 == TTF_Init() )
+	initialized = TTF_Init() == 0;
+	if (!initialized)
 	{
-		throw runtime_error( TTF_GetError() );
-	}	
+		throw runtime_error(TTF_GetError());
+	}
 }
 
 void FontService::destroy() {
-	TTF_Quit();
+	if (initialized) {
+		TTF_Quit();
+	}
 }
 
