@@ -19,7 +19,7 @@ void InformationDialog::show() {
 		message.c_str(), /* .message */
 		SDL_arraysize(buttons), /* .numbuttons */
 		buttons, /* .buttons */
-		colorScheme /* .colorScheme */
+		&defaultColorScheme /* .colorScheme */
 	};
 	int buttonid;
 	SDL_ShowMessageBox(&messageboxdata, &buttonid);

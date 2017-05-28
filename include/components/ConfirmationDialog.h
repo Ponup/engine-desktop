@@ -7,14 +7,18 @@ using std::string;
 #include "Window.h"
 
 class ConfirmationDialog : public AbstractDialog {
+    Window *screen;
+    string message;
 
-	Window *screen;
-	string message;
+    const SDL_MessageBoxButtonData buttons[2] = {
+        { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, DIALOG_YES, "Yes"},
+        { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, DIALOG_NO, "No"},
+    };
 
 public:
-	ConfirmationDialog(Window *screen, const string& message_);
-	~ConfirmationDialog();
+    ConfirmationDialog(Window *screen, const string& message);
+    ~ConfirmationDialog();
 
-	int showGetSelected();
+    int showGetSelected();
 };
 
