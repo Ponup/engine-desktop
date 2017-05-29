@@ -9,26 +9,25 @@ using std::string;
 #include "Surface.h"
 
 class Text {
+    string text;
+    Font *font;
 
-	string text;
-	Font *font;
-
-	int alpha;
+    Uint8 alpha;
 
 public:
-	Text();
-	Text(const string& text);
-	Text(const string& text, Font *font);
-	~Text();
+    Text();
+    Text(const string& text);
+    Text(const string& text, Font *font);
+    ~Text();
 
-	void setText(const string& text);
-	string getText() const;
-	void setFont(Font *font);
-	Font *getFont() const;
-	Dimension getDimension() const;
+    void setText(const string& text);
+    string getText() const;
+    void setFont(Font *font);
+    Font *getFont() const;
+    Dimension getDimension() const;
 
-	void setAlpha(int alpha);
+    void setAlpha(Uint8 alpha);
 
-	SDL_Surface* toSDL();
+    SDL_Surface* toSDL();
 };
 

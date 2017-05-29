@@ -7,25 +7,24 @@ using std::string;
 
 namespace Kangaroo {
 
-	class Texture {
+    class Texture {
+        SDL_Texture* internal;
+        int width, height;
 
-		SDL_Texture* internal;
-		int width, height;
+        void init();
 
-		void init();
+    public:
+        Texture(SDL_Renderer* renderer, int width, int height);
+        Texture(SDL_Renderer* renderer, const string& path);
+        Texture(SDL_Renderer* renderer, SDL_Surface* surface);
+        ~Texture();
 
-	public:
-		Texture(SDL_Renderer* renderer, int width, int height);
-		Texture(SDL_Renderer* renderer, const string& path);
-		Texture(SDL_Renderer* renderer, SDL_Surface* surface);
-		~Texture();
+        SDL_Texture* getInternal();
 
-		SDL_Texture* getInternal();
+        void selectAsRenderingTarget(SDL_Renderer* renderer);
+        void unselectAsRenderingTarget(SDL_Renderer* renderer);
 
-		void selectAsRenderingTarget(SDL_Renderer* renderer);
-		void unselectAsRenderingTarget(SDL_Renderer* renderer);
-
-		int getWidth() const;
-		int getHeight() const;
-	};
+        int getWidth() const;
+        int getHeight() const;
+    };
 }

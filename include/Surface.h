@@ -31,7 +31,7 @@ public:
     void clean(const Color &color);
     void setTransparentColor(const Color &color);
     void drawSurface(Surface* image, const Point& point = Point::Origin);
-	void drawTexture(Texture* texture, const Point& point = Point::Origin);
+    void drawTexture(Texture* texture, const Point& point = Point::Origin);
 
     void updateArea(const Point &point, const Dimension &dimension);
     void updateArea(const Area &area);
@@ -43,6 +43,6 @@ public:
 
     void setOpacity(Uint8 opacity);
     SDL_Surface *toSDL();
-	SDL_Texture* toTexture(SDL_Renderer* renderer);
+    SDL_Texture* toTexture(SDL_Renderer* renderer);
 };
 
