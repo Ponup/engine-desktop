@@ -3,18 +3,16 @@
 #include <SDL.h>
 
 class EventHandler {
-	
-	SDL_Event event;
+    SDL_Event event;
 
 public:
-	void captureEvents();
+    void captureEvents();
 
 protected:
-	virtual void onQuit(SDL_QuitEvent);
-	virtual void onMouseMotion(SDL_MouseMotionEvent) = 0;
-	virtual void onMouseButtonDown(SDL_MouseButtonEvent) = 0;
-	virtual void onMouseButtonUp(SDL_MouseButtonEvent) = 0;
-	virtual void onKeyDown(SDL_KeyboardEvent) = 0;
-	virtual void onKeyUp(SDL_KeyboardEvent) = 0;
+    virtual void onQuit(SDL_QuitEvent);
+    virtual void onMouseMotion(SDL_MouseMotionEvent);
+    virtual void onMouseButtonDown(SDL_MouseButtonEvent);
+    virtual void onMouseButtonUp(SDL_MouseButtonEvent);
+    virtual void onKeyDown(SDL_KeyboardEvent);
+    virtual void onKeyUp(SDL_KeyboardEvent);
 };
-

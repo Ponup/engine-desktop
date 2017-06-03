@@ -10,17 +10,21 @@ using Kangaroo::Texture;
 
 namespace Kangaroo {
 
-	class Renderer {
+    class Renderer {
+    public:
+        int width, height;
 
-	public:
-		int width, height;
+        SDL_Renderer* internal;
 
-		SDL_Renderer* internal;
+        Renderer(SDL_Renderer* renderer);
+        Renderer(const Renderer& renderer) {
+            width = renderer.width;
+            height = renderer.height;
+            internal = renderer.internal;
+        }
 
-		Renderer(SDL_Renderer* renderer);
-
-		void drawTexture(Texture* texture, const Point& pos = Point::Origin);
-		void drawText(Text* text, const Point& pos = Point::Origin);
-		void present();
-	};
+        void drawTexture(Texture* texture, const Point& pos = Point::Origin);
+        void drawText(Text* text, const Point& pos = Point::Origin);
+        void present();
+    };
 }
