@@ -1,17 +1,26 @@
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
-FILE(GLOB_RECURSE KANGAROO_SOURCES "src/*.cpp")
+set(KANGAROO_LIB_NAME kangaroo)
 
-SET(KANGAROO_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
-INCLUDE_DIRECTORIES(${KANGAROO_INCLUDE_DIR})
+project(${KANGAROO_LIB_NAME} VERSION 0.9.9 LANGUAGES CXX)
 
-IF(UNIX)
-	ADD_DEFINITIONS(-std=c++11 -pedantic -pedantic-errors -Wall -Werror `sdl2-config --cflags`)
-ELSE()
-	ADD_DEFINITIONS(-Wall)
-ENDIF()
+find_package(SDL2 REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 
-SET(KANGAROO_LIB_NAME Kangaroo)
-ADD_LIBRARY(${KANGAROO_LIB_NAME} STATIC ${KANGAROO_SOURCES})
+file(GLOB_RECURSE KANGAROO_SOURCES "src/*.cpp")
+add_library(${KANGAROO_LIB_NAME} STATIC ${KANGAROO_SOURCES})
+
+target_include_directories(
+	${KANGAROO_LIB_NAME}
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+	PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS}
+)
+target_link_libraries(${KANGAROO_LIB_NAME} ${SDL2_LIBRARIES} ${SDL2_TTF_LIBRARIES})
+
+if(UNIX)
+	add_definitions(-std=c++14 -pedantic -pedantic-errors -Wall -Werror -Werror)
+else()
+	add_definitions(-Wall)
+endif()
 

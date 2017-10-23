@@ -8,7 +8,6 @@ using std::string;
 
 class InformationDialog : public AbstractDialog {
 
-	Window *screen;
 	string message;
 
 public:

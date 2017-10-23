@@ -3,7 +3,7 @@
 #include "FontManager.h"
 #include "SurfaceUtil.h"
 
-InformationDialog::InformationDialog(Window *screen_, const string& message_) : screen(screen_), message(message_) {
+InformationDialog::InformationDialog(Window *screen_, const string& message_) : message(message_) {
 }
 
 InformationDialog::~InformationDialog() {}
