@@ -2,8 +2,8 @@
 
 #include <SDL.h>
 
-#include <string>
-using std::string;
+#include <iostream>
+using std::ostream;
 
 #include "Point.h"
 #include "Dimension.h"
@@ -28,7 +28,7 @@ public:
 	Dimension getDimension() const;
 	
 	bool contains(short x, short y) const;
-	
-	string toString() const;
 };
+
+ostream& operator<<(ostream& stream, const Area& area);
 

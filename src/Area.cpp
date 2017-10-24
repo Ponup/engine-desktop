@@ -1,8 +1,5 @@
 #include "Area.h"
 
-#include <sstream>
-using std::ostringstream;
-
 void Area::setPoint(const Point &point) {
 	x = point.x;
 	y = point.y;
@@ -30,9 +27,7 @@ bool Area::contains( short x_, short y_ ) const {
 	);
 }
 
-string Area::toString() const {
-	ostringstream oss;
-	oss << "Area [ x: " << x << " y: " << y << ", width: " << w << ", height: " << h << " ]";
-	return oss.str();
+ostream& operator<<(ostream& stream, const Area& area) {
+	return stream << "Area {x: " << area.x << ", y: " << area.y << ", w: " << area.w << ", h: " << area.h << "}";
 }
 

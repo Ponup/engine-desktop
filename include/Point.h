@@ -2,8 +2,8 @@
 
 #include <SDL_rect.h>
 
-#include <string>
-using std::string;
+#include <iostream>
+using std::ostream;
 
 /**
  * Indicates the position of an element on a 2D space.
@@ -30,7 +30,7 @@ public:
     Point operator+(const Point& point);
     Point operator=(const Point& point);
     bool operator==(const Point& point);
-
-    string toString() const;
 };
+
+ostream& operator<<(ostream& stream, const Point& point);
 
