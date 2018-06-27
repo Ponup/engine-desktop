@@ -12,3 +12,5 @@ Project.sln
 Project.v12.suo
 
 Release/
+CMakeScripts
+kangaroo.xcodeproj/
