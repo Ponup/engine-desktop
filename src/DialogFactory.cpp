@@ -13,7 +13,3 @@ void DialogFactory::showInformationDialog(Window *screen, const char *message) {
 	dlg.show();
 }
 
-char *DialogFactory::showInputDialog(Window *screen, const char *message) {
-	return nullptr;
-}
-

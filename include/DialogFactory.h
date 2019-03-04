@@ -10,6 +10,5 @@ class DialogFactory {
 public:
 	static int showConfirmationDialog(Window *screen, const char *message);
 	static void showInformationDialog(Window *screen, const char *message);
-	static char *showInputDialog(Window *screen, const char *message);
 };
 
