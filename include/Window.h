@@ -20,7 +20,6 @@ private:
     unsigned int height;
     bool fullScreen;
 
-    SDL_Surface* surface;
     SDL_Window* window;
 
     void defineSurface();
