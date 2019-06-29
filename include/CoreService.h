@@ -20,7 +20,7 @@ private:
 
 public:
 	CoreService( Uint32 flags = SDL_INIT_EVERYTHING );
-	void init() throw( runtime_error );
+	void init();
 	void destroy();
 };
 

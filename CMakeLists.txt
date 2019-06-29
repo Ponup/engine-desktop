@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 set(KANGAROO_LIB_NAME kangaroo)
 
@@ -17,9 +17,10 @@ target_include_directories(
 	PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS}
 )
 target_link_libraries(${KANGAROO_LIB_NAME} ${SDL2_LIBRARIES} ${SDL2_TTF_LIBRARIES})
+set_property(TARGET ${KANGAROO_LIB_NAME} PROPERTY CXX_STANDARD 14)
 
 if(UNIX)
-	add_definitions(-std=c++14 -pedantic -pedantic-errors -Wall -Werror -Werror)
+	add_definitions(-pedantic -pedantic-errors -Wall -Werror -Werror)
 else()
 	add_definitions(-Wall)
 endif()

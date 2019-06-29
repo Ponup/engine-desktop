@@ -1,7 +1,7 @@
 CMakeFiles/
 Makefile
 cmake_install.cmake
-libKangaroo.a
+*.a
 Debug
 *.vcxproj
 *.vcxproj.filters
@@ -10,7 +10,6 @@ Kangaroo.dir
 Project.sdf
 Project.sln
 Project.v12.suo
-
 Release/
 CMakeScripts
 kangaroo.xcodeproj/

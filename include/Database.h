@@ -23,9 +23,9 @@ namespace Kangaroo {
 		Database& operator=(const Database &) = delete;
 		~Database();
 
-		void init(const char *dbName) throw( runtime_error );
+		void init(const char *dbName);
 
-		void update(const char *sql, ...) throw( runtime_error );
-		ResultSet& execute(const char *sql, ...) throw(runtime_error);
+		void update(const char *sql, ...);
+		ResultSet& execute(const char *sql, ...);
 	};
 }

@@ -15,7 +15,7 @@ class FontService : public Service {
 	bool initialized;
 
 public:
-	void init() throw(runtime_error);
+	void init();
 	void destroy();
 };
 

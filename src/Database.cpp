@@ -23,14 +23,14 @@ namespace Kangaroo {
 		}
 	}
 
-	void Database::init(const char *dbName) throw( runtime_error ) {
+	void Database::init(const char *dbName) {
 		int rc = sqlite3_open(dbName, &handle);
 		if (rc != SQLITE_OK) {
 			throw runtime_error(sqlite3_errmsg(handle));
 		}
 	}
 
-	void Database::update(const char *sql, ...) throw( runtime_error ) {
+	void Database::update(const char *sql, ...) {
 		char query[0x100];
 
 		va_list params;
@@ -45,7 +45,7 @@ namespace Kangaroo {
 		}
 	}
 
-	ResultSet& Database::execute(const char *sql, ...) throw(runtime_error) {
+	ResultSet& Database::execute(const char *sql, ...) {
 		char query[0x400];
 		memset(query, '\0', 0x400);
 

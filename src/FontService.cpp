@@ -2,7 +2,7 @@
 
 #include <SDL_ttf.h>
 
-void FontService::init() throw (std::runtime_error) {
+void FontService::init() {
 	initialized = TTF_Init() == 0;
 	if (!initialized)
 	{
