@@ -48,3 +48,7 @@ int Kangaroo::Texture::getHeight() const {
     return height;
 }
 
+int Kangaroo::Texture::setAlphaMod(Uint8 alpha) {
+    return SDL_SetTextureAlphaMod(internal, alpha);
+}
+

@@ -24,6 +24,7 @@ namespace Kangaroo {
         void selectAsRenderingTarget(SDL_Renderer* renderer);
         void unselectAsRenderingTarget(SDL_Renderer* renderer);
 
+        int setAlphaMod(Uint8 alpha);
         int getWidth() const;
         int getHeight() const;
     };
