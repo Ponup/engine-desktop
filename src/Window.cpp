@@ -10,12 +10,12 @@ const int Window::FLAGS_FULLSCREEN = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN;
 SDL_Renderer* Window::renderer = nullptr;
 SDL_Texture* Window::texture = nullptr;
 
-Window::Window(const string& title, unsigned int width, unsigned int height) {
-    *this = Window(title, width, height, nullptr, false);
+Window::Window(const string& title, const Dimension &dimension) {
+    *this = Window(title, dimension, nullptr, false);
 }
 
-Window::Window(const string& title_, unsigned int width_, unsigned int height_, const string& iconPath_, bool fullScreen_) :
-title(title_), iconPath(iconPath_), width(width_), height(height_), fullScreen(fullScreen_) {
+Window::Window(const string& title_, const Dimension &dimension, const string& iconPath_, bool fullScreen_) :
+title(title_), iconPath(iconPath_), dimension(dimension), fullScreen(fullScreen_) {
 
     defineSurface();
 }
@@ -35,8 +35,8 @@ void Window::defineSurface() {
     window = SDL_CreateWindow(title.c_str(),
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
-            width,
-            height,
+            dimension.w,
+            dimension.h,
             flags);
 
     if (!iconPath.empty()) {
@@ -47,16 +47,11 @@ void Window::defineSurface() {
         }
     }
 
-
-    //	surface = SDL_GetWindowSurface( window );
-
     renderer = SDL_CreateRenderer(window, -1, 0);
-    //	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");  // make the scaled rendering look smoother.
-    //	SDL_RenderSetLogicalSize(renderer, width, height);
 }
 
 Dimension Window::getDimension() const {
-    return Dimension(width, height);
+    return dimension;
 }
 
 SDL_Window* Window::toSDL() {
@@ -66,5 +61,3 @@ SDL_Window* Window::toSDL() {
 SDL_Surface* Window::getSurface(void) {
     return SDL_GetWindowSurface(window);
 }
-
-//SDL_UpdateWindowSurface

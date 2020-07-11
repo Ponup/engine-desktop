@@ -16,8 +16,7 @@ class Window {
 private:
     string title;
     string iconPath;
-    unsigned int width;
-    unsigned int height;
+    Dimension dimension;
     bool fullScreen;
 
     SDL_Window* window;
@@ -33,9 +32,8 @@ public:
     const static int FLAGS_WINDOW;
     const static int FLAGS_FULLSCREEN;
 
-    Window(const string& title, unsigned int width, unsigned int height);
-    Window(const string& title, unsigned int width, unsigned int height,
-            const string& iconPath, bool fullScreen);
+    Window(const string& title, const Dimension &dimension);
+    Window(const string& title, const Dimension &dimension, const string& iconPath, bool fullScreen);
     ~Window();
 
     Dimension getDimension() const;
