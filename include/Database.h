@@ -7,6 +7,9 @@ using std::runtime_error;
 
 #include "ResultSet.h"
 
+#include <string>
+using std::string;
+
 namespace Kangaroo {
 
 	class Database {
@@ -23,7 +26,7 @@ namespace Kangaroo {
 		Database& operator=(const Database &) = delete;
 		~Database();
 
-		void init(const char *dbName);
+		void init(const string &dbName);
 
 		void update(const char *sql, ...);
 		ResultSet& execute(const char *sql, ...);

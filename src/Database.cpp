@@ -23,8 +23,8 @@ namespace Kangaroo {
 		}
 	}
 
-	void Database::init(const char *dbName) {
-		int rc = sqlite3_open(dbName, &handle);
+	void Database::init(const string &dbName) {
+		int rc = sqlite3_open(dbName.c_str(), &handle);
 		if (rc != SQLITE_OK) {
 			throw runtime_error(sqlite3_errmsg(handle));
 		}
